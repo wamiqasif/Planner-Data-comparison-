@@ -1,0 +1,152 @@
+{
+  "data": {
+    "funds_data": {
+      "data": [
+        {
+          "category_data": {
+            "category_fmt": "Large & MidCap",
+            "category_id": 101,
+            "is_show": true
+          },
+          "plan_data": {
+            "full_url": "/funds/icici-prudential-large-mid-cap-fund-direct-plan-15868/",
+            "is_show": true,
+            "name": "ICICI Pru Large & Mid Cap Direct-G",
+            "plan_id": 15868
+          },
+          "txn_data": {
+            "amount": 82000,
+            "amount_fmt": "₹82,000",
+            "frequency_fmt": "monthly",
+            "is_show": true
+          },
+          "port_builder_id": "pb_tech_x01"
+        },
+        {
+          "category_data": {
+            "category_fmt": "Flexi Cap",
+            "category_id": 102,
+            "is_show": true
+          },
+          "plan_data": {
+            "full_url": "/funds/parag-parikh-flexi-cap-fund-direct-plan-19701/",
+            "is_show": true,
+            "name": "Parag Parikh Flexi Cap Direct-G",
+            "plan_id": 19701
+          },
+          "txn_data": {
+            "amount": 82000,
+            "amount_fmt": "₹82,000",
+            "frequency_fmt": "monthly",
+            "is_show": true
+          },
+          "port_builder_id": "pb_tech_x02"
+        },
+        {
+          "category_data": {
+            "category_fmt": "Flexi Cap",
+            "category_id": 102,
+            "is_show": true
+          },
+          "plan_data": {
+            "full_url": "/funds/helios-flexi-cap-fund-direct-plan-43839/",
+            "is_show": true,
+            "name": "Helios Flexi Cap Direct-G",
+            "plan_id": 43839
+          },
+          "txn_data": {
+            "amount": 81833.33333333331,
+            "amount_fmt": "₹81,833",
+            "frequency_fmt": "monthly",
+            "is_show": true
+          },
+          "port_builder_id": "pb_tech_x03"
+        },
+        {
+          "category_data": {
+            "category_fmt": "Short Term",
+            "category_id": 122,
+            "is_show": true
+          },
+          "plan_data": {
+            "full_url": "/funds/axis-short-term-fund-direct-plan-15752/",
+            "is_show": true,
+            "name": "Axis Short Term Direct-G",
+            "plan_id": 15752
+          },
+          "txn_data": {
+            "amount": 2512500,
+            "amount_fmt": "₹25,12,500",
+            "frequency_fmt": "monthly",
+            "is_show": true
+          },
+          "port_builder_id": "pb_tech_x04"
+        }
+      ],
+      "title": "4 Suitable Mutual Funds"
+    },
+    "breakdown_funds_data": {
+      "data": [
+        {
+          "data": [
+            {
+              "inv_data": [
+                {"txn_type_name": "SIP",      "amount_fmt": "₹12,500",    "frequency_fmt": "180 months", "is_show": true},
+                {"txn_type_name": "SIP",      "amount_fmt": "₹69,500",    "frequency_fmt": "36 months",  "is_show": true}
+              ],
+              "plan_data": {"name": "ICICI Pru Large & Mid Cap Direct-G", "is_show": true}
+            },
+            {
+              "inv_data": [
+                {"txn_type_name": "SIP",      "amount_fmt": "₹12,500",    "frequency_fmt": "180 months", "is_show": true},
+                {"txn_type_name": "SIP",      "amount_fmt": "₹69,500",    "frequency_fmt": "36 months",  "is_show": true}
+              ],
+              "plan_data": {"name": "Parag Parikh Flexi Cap Direct-G", "is_show": true}
+            },
+            {
+              "inv_data": [
+                {"txn_type_name": "SIP",      "amount_fmt": "₹12,500",    "frequency_fmt": "180 months", "is_show": true},
+                {"txn_type_name": "SIP",      "amount_fmt": "₹69,333",    "frequency_fmt": "36 months",  "is_show": true}
+              ],
+              "plan_data": {"name": "Helios Flexi Cap Direct-G", "is_show": true}
+            }
+          ],
+          "name": "Equity",
+          "perc_fmt": "75%",
+          "percentage": 75.00,
+          "amount": 246000
+        },
+        {
+          "data": [
+            {
+              "inv_data": [
+                {"txn_type_name": "SIP",      "amount_fmt": "₹12,500",    "frequency_fmt": "180 months", "is_show": true},
+                {"txn_type_name": "One-time", "amount_fmt": "₹25,00,000", "frequency_fmt": null,         "is_show": true}
+              ],
+              "plan_data": {"name": "Axis Short Term Direct-G", "is_show": true}
+            }
+          ],
+          "name": "Debt",
+          "perc_fmt": "25%",
+          "percentage": 25.00,
+          "amount": 2512500
+        }
+      ],
+      "title": "Investment Breakdown"
+    },
+    "investor": {
+      "investor_id": 88244645,
+      "investor_name": "Sourav Adhikari",
+      "user_id": 52264629
+    },
+    "inpage_title": "Your investment plan",
+    "inv_txn_account_status": {
+      "can_transact": true,
+      "message": null,
+      "txn_account_status": "ACTIVE"
+    },
+    "output_id": 521023,
+    "port_builder_id": 380846
+  },
+  "status": true
+}

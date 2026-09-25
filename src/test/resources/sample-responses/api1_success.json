@@ -1,0 +1,170 @@
+{
+  "data": {
+    "aware_type": "FRESH",
+    "funds_data": {
+      "data": [
+        {
+          "category_data": {
+            "category_fmt": "Short Term",
+            "category_id": 122,
+            "is_show": true
+          },
+          "first_month_amount": 3350100,
+          "first_month_amount_fmt": "₹33,50,100",
+          "is_owned": false,
+          "legs": [
+            {
+              "amount": 16700,
+              "amount_fmt": "₹16,700",
+              "duration_fmt": "15 months",
+              "duration_months": 15,
+              "frequency_fmt": "month",
+              "is_recurring": true,
+              "type": "sip",
+              "type_fmt": "SIP"
+            },
+            {
+              "amount": 3333400,
+              "amount_fmt": "₹33,33,400",
+              "duration_fmt": "This month",
+              "duration_months": null,
+              "is_recurring": false,
+              "type": "one_time",
+              "type_fmt": "One-time"
+            }
+          ],
+          "mode_label_fmt": "first-month total",
+          "plan_data": {
+            "full_url": "/funds/bandhan-short-term-fund-direct-plan-17074/",
+            "is_show": true,
+            "name": "Bandhan Short Term Dir-G",
+            "plan_id": 17074
+          },
+          "port_builder_id": "pb_tech_001"
+        },
+        {
+          "category_data": {
+            "category_fmt": "Short Term",
+            "category_id": 122,
+            "is_show": true
+          },
+          "first_month_amount": 3350100,
+          "first_month_amount_fmt": "₹33,50,100",
+          "is_owned": false,
+          "legs": [
+            {
+              "amount": 16700,
+              "amount_fmt": "₹16,700",
+              "duration_fmt": "15 months",
+              "duration_months": 15,
+              "frequency_fmt": "month",
+              "is_recurring": true,
+              "type": "sip",
+              "type_fmt": "SIP"
+            },
+            {
+              "amount": 3333400,
+              "amount_fmt": "₹33,33,400",
+              "duration_fmt": "This month",
+              "duration_months": null,
+              "is_recurring": false,
+              "type": "one_time",
+              "type_fmt": "One-time"
+            }
+          ],
+          "mode_label_fmt": "first-month total",
+          "plan_data": {
+            "full_url": "/funds/axis-short-term-fund-direct-plan-15752/",
+            "is_show": true,
+            "name": "Axis Short Term Dir-G",
+            "plan_id": 15752
+          },
+          "port_builder_id": "pb_tech_002"
+        },
+        {
+          "category_data": {
+            "category_fmt": "Short Term",
+            "category_id": 122,
+            "is_show": true
+          },
+          "first_month_amount": 3349800,
+          "first_month_amount_fmt": "₹33,49,800",
+          "is_owned": false,
+          "legs": [
+            {
+              "amount": 16600,
+              "amount_fmt": "₹16,600",
+              "duration_fmt": "15 months",
+              "duration_months": 15,
+              "frequency_fmt": "month",
+              "is_recurring": true,
+              "type": "sip",
+              "type_fmt": "SIP"
+            },
+            {
+              "amount": 3333200,
+              "amount_fmt": "₹33,33,200",
+              "duration_fmt": "This month",
+              "duration_months": null,
+              "is_recurring": false,
+              "type": "one_time",
+              "type_fmt": "One-time"
+            }
+          ],
+          "mode_label_fmt": "first-month total",
+          "plan_data": {
+            "full_url": "/funds/hdfc-short-term-fund-direct-plan-16151/",
+            "is_show": true,
+            "name": "HDFC Short Term Dir-G",
+            "plan_id": 16151
+          },
+          "port_builder_id": "pb_tech_003"
+        }
+      ],
+      "title": "3 Suitable Mutual Funds"
+    },
+    "breakdown_funds_data": {
+      "data": [
+        {
+          "data": [
+            {
+              "legs": [
+                {"type": "sip",      "type_fmt": "SIP",      "amount": 16700,   "is_recurring": true},
+                {"type": "one_time", "type_fmt": "One-time", "amount": 3333400, "is_recurring": false}
+              ],
+              "plan_data": {"name": "Bandhan Short Term Dir-G", "is_show": true}
+            },
+            {
+              "legs": [
+                {"type": "sip",      "type_fmt": "SIP",      "amount": 16700,   "is_recurring": true},
+                {"type": "one_time", "type_fmt": "One-time", "amount": 3333400, "is_recurring": false}
+              ],
+              "plan_data": {"name": "Axis Short Term Dir-G", "is_show": true}
+            },
+            {
+              "legs": [
+                {"type": "sip",      "type_fmt": "SIP",      "amount": 16600,   "is_recurring": true},
+                {"type": "one_time", "type_fmt": "One-time", "amount": 3333200, "is_recurring": false}
+              ],
+              "plan_data": {"name": "HDFC Short Term Dir-G", "is_show": true}
+            }
+          ],
+          "name": "Debt",
+          "perc_fmt": "100%",
+          "percentage": 100.00,
+          "amount": 10050000
+        }
+      ],
+      "title": "Investment Breakdown"
+    },
+    "investor": {
+      "investor_id": 87683240,
+      "investor_name": "test1290",
+      "user_id": 81843819
+    },
+    "inpage_title": "Your investment plan",
+    "port_builder_id": "01a05d38-ddfc-7129-a6e7-8506ecb52da3"
+  },
+  "message": "New Record Added",
+  "status": true
+}

@@ -1,0 +1,205 @@
+<html>
+<head>
+<title>TestNG:  Comparator Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Comparator Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>25/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (35 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>compare </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario09_dirGNormalization_passWithNote()'><b>scenario09_dirGNormalization_passWithNote</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 'Dir-G' in API-1 vs 'Direct-G' in API-2 → PASS, informational NORMALIZATION_DIFFERENCE</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule1_notInOpinionData_fail()'><b>alternateFund_rejectedByRule1_notInOpinionData_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate not present in fund-opinion-data (Rule 1 fails) → ALTERNATE_REJECTED, never MISSING_FIELD/EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.failedExtractionProducesError()'><b>failedExtractionProducesError</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Failed extraction produces API_EXECUTION_ERROR</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10a_amountWithinTolerance_pass()'><b>scenario10a_amountWithinTolerance_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference within tolerance → PASS</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10b_amountOutsideTolerance_fail()'><b>scenario10b_amountOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference outside tolerance → FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionTypeMismatch_missingOneTime()'><b>transactionTypeMismatch_missingOneTime</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 has SIP+ONE_TIME; API-2 has only SIP → MISSING_FIELD for ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule4_goodNotPickLowStar_fail()'><b>alternateFund_rejectedByRule4_goodNotPickLowStar_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate is Good, not Analyst's Choice, 1-3 star (Rule 4 fails) → ALTERNATE_REJECTED</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario08_differentFundOrder_pass()'><b>scenario08_differentFundOrder_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same funds in different array order → PASS (matched by plan_id)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.normDifferenceDoesNotFail()'><b>normDifferenceDoesNotFail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: NORMALIZATION_DIFFERENCE does not increment failing count</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionAmountMismatch()'><b>transactionAmountMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same transaction types, SIP amounts differ → BUSINESS_VALUE_MISMATCH for SIP amount</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario03_extraFundInApi2_fail()'><b>scenario03_extraFundInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 has extra fund → COUNT_MISMATCH + EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_ambiguousPairing_multipleCandidatesShareCategory()'><b>alternateFund_ambiguousPairing_multipleCandidatesShareCategory</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 2 API-1 orphans share one category_name against 1 API-2 orphan → pairing cannot be uniquely resolved → PAIRING_AMBIGUOUS for all 3, never guessed</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario07_multipleMismatches_allCollected()'><b>scenario07_multipleMismatches_allCollected</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Multiple field differences → all collected, single FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_multiplePairs_TC05264Shape()'><b>alternateFund_multiplePairs_TC05264Shape</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Real-world shape (TC_05264): 4 funds matched directly by plan_id, 3 funds paired as alternates by category_name — each independently evaluated; all report REQUIRED_DATA_NOT_AVAILABLE since Rules 2/3 have no reference data yet</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_fundDetailsFetchFailure_dataGap()'><b>alternateFund_fundDetailsFetchFailure_dataGap</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Fund Details fetch fails for an orphan → REQUIRED_DATA_NOT_AVAILABLE, never silently falls back to MISSING_FIELD/EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_cleanCandidate_reportsRequiredDataNotAvailable()'><b>alternateFund_cleanCandidate_reportsRequiredDataNotAvailable</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate passes Rules 1/4/5 but Rules 2/3 have no reference data configured yet → overall REQUIRED_DATA_NOT_AVAILABLE, never guessed PASS</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario02_fundMissingInApi2_fail()'><b>scenario02_fundMissingInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 missing a fund → COUNT_MISMATCH + MISSING_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.responseStatusMismatch()'><b>responseStatusMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Status mismatch between responses → STATUS_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario06_breakdownMismatch_fail()'><b>scenario06_breakdownMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Breakdown percentages differ beyond tolerance → BUSINESS_VALUE_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario01_exactMatch_pass()'><b>scenario01_exactMatch_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Identical responses → PASS, zero mismatches</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10d_percentageOutsideTolerance_fail()'><b>scenario10d_percentageOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Percentage difference outside tolerance → FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario04_amountMismatch_fail()'><b>scenario04_amountMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amounts differ beyond tolerance → BUSINESS_VALUE_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario05_categoryMismatch_fail()'><b>scenario05_categoryMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Different category_id → VALUE_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10c_percentageWithinTolerance_pass()'><b>scenario10c_percentageWithinTolerance_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Percentage difference within tolerance → PASS</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_noCategoryMatchOnOtherSide_stillMissingAndExtra()'><b>alternateFund_noCategoryMatchOnOtherSide_stillMissingAndExtra</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 orphan's category_name matches nothing on the API-2 side → genuine absence, falls through to MISSING_FIELD/EXTRA_FIELD unchanged</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+</table><p>
+</body>
+</html>

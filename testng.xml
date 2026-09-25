@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Portfolio Planner API Test Suite" verbose="2" data-provider-thread-count="5">
+
+    <!-- Step 0: Verifies Maven + TestNG wiring and all deps on classpath -->
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.smoke.SmokeTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 1: Verifies configuration loading, env-var gate, and HeaderManager -->
+    <test name="Configuration Tests">
+        <groups>
+            <run>
+                <include name="config"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.config.ConfigReaderTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 2: Verifies Excel fixture bootstrap, ExcelReader, and TestData model -->
+    <test name="Excel Data Layer Tests">
+        <groups>
+            <run>
+                <include name="excel"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.excel.ExcelReaderTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 4: Unit tests for Api1JsonPayloadBuilder and Api2FormDataPayloadBuilder -->
+    <test name="Payload Builder Tests">
+        <groups>
+            <run>
+                <include name="payload"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.payload.PayloadBuilderTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 5: Extraction layer — models + extractors tested against stored sample JSON -->
+    <test name="Response Extraction Tests">
+        <groups>
+            <run>
+                <include name="extraction"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.response.ResponseExtractorTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 6: Normalization layer — FieldMapping, CurrencyNormalizer, TransactionTypeNormalizer, FundNameNormalizer, ResponseNormalizer -->
+    <test name="Normalization Tests">
+        <groups>
+            <run>
+                <include name="normalize"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.normalize.NormalizerTest"/>
+        </classes>
+    </test>
+
+    <!-- Reporting layer — fund context, difference/tolerance, Extent + Excel -->
+    <test name="Reporting Tests">
+        <groups>
+            <run>
+                <include name="reporting"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.report.ReportingTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 7: Comparison engine — ResponseComparator, FundComparator, BreakdownComparator, ValueComparator -->
+    <test name="Comparator Tests">
+        <groups>
+            <run>
+                <include name="compare"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.compare.ComparatorTest"/>
+        </classes>
+    </test>
+
+    <!-- Live reprocessing of known alternate-fund plan_ids against the real Fund Opinion /
+         Fund Details endpoints — see AlternateFundValidator. Requires network access. -->
+    <test name="Alternate Fund Validation (Live)">
+        <groups>
+            <run>
+                <include name="altfund"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.altfund.AlternateFundLiveReprocessTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 3 (temporary): Prints API status + timing only; no comparison -->
+    <test name="Integration Smoke">
+        <groups>
+            <run>
+                <include name="integration"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.integration.PortfolioPlannerIntegrationTest"/>
+        </classes>
+    </test>
+
+    <!-- Step 8: Full Excel-driven end-to-end comparison — 6,750 rows, 5 parallel threads -->
+    <test name="API Comparison Tests">
+        <groups>
+            <run>
+                <include name="api-comparison"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.vr.portfolioplanner.test.ApiComparisonTest"/>
+        </classes>
+    </test>
+
+</suite>

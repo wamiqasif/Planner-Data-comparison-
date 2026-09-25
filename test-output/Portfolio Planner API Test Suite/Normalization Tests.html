@@ -1,0 +1,290 @@
+<html>
+<head>
+<title>TestNG:  Normalization Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Normalization Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>42/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (47 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>normalize </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_unknownPatternUnchanged()'><b>fundName_unknownPatternUnchanged</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Does not modify names with no known substitution</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_oneTimeSnakeCase()'><b>txnType_oneTimeSnakeCase</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: 'one_time' (snake_case) → ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_percentageStringStripped()'><b>currency_percentageStringStripped</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Strips % sign from percentage strings</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_nullReturnsNull()'><b>fundName_nullReturnsNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Null input returns null</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_api1LegTypesNormalized()'><b>responseNormalizer_api1LegTypesNormalized</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: TransactionLeg normalizedType from API-1 'sip'/'one_time' is SIP/ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_handlesFailedExtractionGracefully()'><b>responseNormalizer_handlesFailedExtractionGracefully</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: ResponseNormalizer skips failed extractions without throwing</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_directGUnchanged()'><b>fundName_directGUnchanged</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Does not modify names that already contain 'Direct-G'</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_returnsNonNull()'><b>responseNormalizer_returnsNonNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: ResponseNormalizer.normalize() returns non-null for successful extraction</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_nullAndBlankReturnNull()'><b>txnType_nullAndBlankReturnNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: null/blank input → null</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_oneTimeCapitalisedVariant()'><b>txnType_oneTimeCapitalisedVariant</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: 'One-Time' (capitalised variant) → ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fieldMapping_excludedFieldsPresent()'><b>fieldMapping_excludedFieldsPresent</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: EXCLUDED fields include port_builder_id and output_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_nullAndBlankReturnNull()'><b>currency_nullAndBlankReturnNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Returns null for null or blank input</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_api2FundLevelLegsAreEmpty()'><b>responseNormalizer_api2FundLevelLegsAreEmpty</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: API-2 fund-level legs are empty — inv_data is not at funds_data level in real API</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_sipLowercase()'><b>txnType_sipLowercase</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: 'sip' (lowercase) → SIP</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_commasOnlyStripped()'><b>currency_commasOnlyStripped</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Strips thousands-separator commas only (preserves decimal point)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_sipUppercase()'><b>txnType_sipUppercase</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: 'SIP' (uppercase) → SIP</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_indianLakhFormat()'><b>currency_indianLakhFormat</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Indian lakh format: 1,00,000 → 100000</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_dirGReplaced()'><b>fundName_dirGReplaced</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Replaces 'Dir-G' with 'Direct-G' mid-name</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_api1AndApi2SipAreEquivalent()'><b>txnType_api1AndApi2SipAreEquivalent</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: API-1 'sip' and API-2 'SIP' both produce the same canonical type</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fieldMapping_notComparableFieldsPresent()'><b>fieldMapping_notComparableFieldsPresent</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: NOT_COMPARABLE fields include message and frequency/duration</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_plainIntegerString()'><b>currency_plainIntegerString</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Parses plain integer string without formatting</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_parsePercentageHelper()'><b>currency_parsePercentageHelper</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: parsePercentage helper strips % sign</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_breakdownPercentagesResolved()'><b>responseNormalizer_breakdownPercentagesResolved</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: ResponseNormalizer resolves perc_fmt to BigDecimal for all breakdowns</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_bigDecimalPassThrough()'><b>currency_bigDecimalPassThrough</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: BigDecimal pass-through overload is identity</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.breakdownEntry_resolveFallsBackToPercFmt()'><b>breakdownEntry_resolveFallsBackToPercFmt</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: resolvePercentage falls back to percFmt when numeric percentage is null</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fieldMapping_allIsNonEmpty()'><b>fieldMapping_allIsNonEmpty</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: FieldMapping.ALL is non-empty</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_api1HasLegsApi2DoesNot()'><b>responseNormalizer_api1HasLegsApi2DoesNot</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: API-1 legs carry normalizedType; API-2 has no fund-level legs — comparison is skipped</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_fundNamesNormalized()'><b>responseNormalizer_fundNamesNormalized</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: ResponseNormalizer replaces 'Dir-G' with 'Direct-G' in fund names</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_isKnown()'><b>txnType_isKnown</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: isKnown() returns true only for registered types</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_longOverload()'><b>currency_longOverload</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: long overload wraps as BigDecimal</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fieldMapping_comparableMappingsPresent()'><b>fieldMapping_comparableMappingsPresent</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: All required COMPARABLE mappings are registered</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fieldMapping_amountMappingNotesDifferentPaths()'><b>fieldMapping_amountMappingNotesDifferentPaths</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: investment_amount mapping notes different JSON paths</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_dirGAtEnd()'><b>fundName_dirGAtEnd</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Replaces 'Dir-G' at end of name</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_unknownTypeUpperCased()'><b>txnType_unknownTypeUpperCased</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Unknown type → upper-cased pass-through</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_oneTimeDisplayForm()'><b>txnType_oneTimeDisplayForm</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: 'One-time' (API-2 display form) → ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_rupeeSymbolAndCommasStripped()'><b>currency_rupeeSymbolAndCommasStripped</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Strips ₹ symbol and commas</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.currency_unparseableReturnNull()'><b>currency_unparseableReturnNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: Returns null for unparseable input</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.breakdownEntry_resolvePrefersNumericPercentage()'><b>breakdownEntry_resolvePrefersNumericPercentage</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: resolvePercentage prefers numeric percentage over percFmt</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.txnType_api1AndApi2OneTimeAreEquivalent()'><b>txnType_api1AndApi2OneTimeAreEquivalent</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: API-1 'one_time' and API-2 'One-time' both produce ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.fundName_matchesApi1VsApi2()'><b>fundName_matchesApi1VsApi2</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: matches() confirms API-1 Dir-G equals API-2 Direct-G after normalization</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.breakdownEntry_resolveBothAbsentReturnsNull()'><b>breakdownEntry_resolveBothAbsentReturnsNull</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: resolvePercentage returns null when both fields are absent</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.normalize.NormalizerTest.responseNormalizer_api1AndApi2FundNamesMatch()'><b>responseNormalizer_api1AndApi2FundNamesMatch</b><br>Test class: com.vr.portfolioplanner.normalize.NormalizerTest<br>Test method: After normalization API-1 and API-2 fund names match for same plan</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.normalize.NormalizerTest@3e521715</td></tr>
+</table><p>
+</body>
+</html>

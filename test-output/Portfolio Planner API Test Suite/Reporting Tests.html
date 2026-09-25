@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>TestNG:  Reporting Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Reporting Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>14/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (20 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>reporting </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.apiExecutionError_reportedSeparately()'><b>apiExecutionError_reportedSeparately</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 10. Failed extraction → API_EXECUTION_ERROR, not fund mismatch</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.mismatch_containsApi2FundName()'><b>mismatch_containsApi2FundName</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 3. FundComparator mismatch contains API-2 fund name</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.normalizationDifference_isInformational()'><b>normalizationDifference_isInformational</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 9. NORMALIZATION_DIFFERENCE does not cause FAIL and carries fund names</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.mismatch_containsPlanId()'><b>mismatch_containsPlanId</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 1. FundComparator mismatch contains plan_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.friendlyField_extractsLastSegment()'><b>friendlyField_extractsLastSegment</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: friendlyField extracts trailing segment from fieldPath</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.mismatch_containsApi1FundName()'><b>mismatch_containsApi1FundName</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 2. FundComparator mismatch contains API-1 fund name</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.excelMismatchDetails_containsFundContext()'><b>excelMismatchDetails_containsFundContext</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 13. formatMismatchDetails includes fund name and plan_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.mismatch_fieldAttachedToCorrectPlan()'><b>mismatch_fieldAttachedToCorrectPlan</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 4. Field mismatch is attached to the correct plan_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.difference_calculatedCorrectly()'><b>difference_calculatedCorrectly</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 7. Difference is calculated correctly for numeric mismatch</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.extraFund_showsApi2FundName()'><b>extraFund_showsApi2FundName</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 6. Extra fund shows API-2 fund name and 'NOT FOUND' for API-1</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.missingFund_showsApi1FundName()'><b>missingFund_showsApi1FundName</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 5. Missing fund shows API-1 fund name and 'NOT FOUND' for API-2</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.multipleMismatchesForOneFund_allCollected()'><b>multipleMismatchesForOneFund_allCollected</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 11. Multiple field failures on one fund are individually reported</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.tolerance_presentInMismatch()'><b>tolerance_presentInMismatch</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 8. Tolerance is present in numeric mismatch</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.report.ReportingTest.extentReportManager_initialisesSuccessfully()'><b>extentReportManager_initialisesSuccessfully</b><br>Test class: com.vr.portfolioplanner.report.ReportingTest<br>Test method: 12. ExtentReportManager initialises without error</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.report.ReportingTest@4bf324f9</td></tr>
+</table><p>
+</body>
+</html>

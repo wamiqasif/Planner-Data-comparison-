@@ -1,0 +1,1191 @@
+<title>Portfolio Planner API Framework</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── Tokens ── */
+:root {
+  --bg:         #F8FAFC;
+  --surface:    #FFFFFF;
+  --surface2:   #F1F5F9;
+  --border:     #E2E8F0;
+  --text:       #1A2332;
+  --muted:      #64748B;
+  --accent:     #1D4ED8;
+  --accent-dim: #DBEAFE;
+  --pass:       #059669;
+  --pass-bg:    #ECFDF5;
+  --fail:       #DC2626;
+  --fail-bg:    #FEF2F2;
+  --warn:       #D97706;
+  --warn-bg:    #FFFBEB;
+  --code-bg:    #F1F5F9;
+  --code-text:  #1E3A5F;
+  --step-color: #1D4ED8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #0D1117;
+    --surface:    #161B22;
+    --surface2:   #1C2128;
+    --border:     #30363D;
+    --text:       #E6EDF3;
+    --muted:      #8B949E;
+    --accent:     #60A5FA;
+    --accent-dim: #1E3A5F;
+    --pass:       #3FB950;
+    --pass-bg:    #0D2818;
+    --fail:       #F85149;
+    --fail-bg:    #2A0A0A;
+    --warn:       #F0B429;
+    --warn-bg:    #1F1800;
+    --code-bg:    #161B22;
+    --code-text:  #A8D8FF;
+    --step-color: #60A5FA;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:         #0D1117;
+  --surface:    #161B22;
+  --surface2:   #1C2128;
+  --border:     #30363D;
+  --text:       #E6EDF3;
+  --muted:      #8B949E;
+  --accent:     #60A5FA;
+  --accent-dim: #1E3A5F;
+  --pass:       #3FB950;
+  --pass-bg:    #0D2818;
+  --fail:       #F85149;
+  --fail-bg:    #2A0A0A;
+  --warn:       #F0B429;
+  --warn-bg:    #1F1800;
+  --code-bg:    #161B22;
+  --code-text:  #A8D8FF;
+  --step-color: #60A5FA;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout shell ── */
+.shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "sidebar main";
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; grid-template-areas: "main"; }
+  .sidebar { display: none; }
+}
+
+/* ── Sidebar TOC ── */
+.sidebar {
+  grid-area: sidebar;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 32px 20px 32px 24px;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.sidebar-logo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.sidebar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.toc { list-style: none; padding: 0; margin: 0; }
+.toc li { margin-bottom: 2px; }
+.toc a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background .15s, color .15s;
+  line-height: 1.4;
+}
+.toc a:hover { background: var(--surface2); color: var(--text); }
+.toc .toc-h2 { padding-left: 10px; }
+.toc .toc-h3 { padding-left: 22px; font-size: 12px; }
+.toc .toc-step a { color: var(--accent); font-weight: 500; }
+
+/* ── Main content ── */
+main {
+  grid-area: main;
+  padding: 48px 56px 80px 56px;
+  max-width: 900px;
+}
+
+@media (max-width: 760px) { main { padding: 24px 20px 48px; } }
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+  color: var(--text);
+}
+
+h1 { font-size: 2rem; font-weight: 700; margin: 0 0 8px; }
+h2 { font-size: 1.35rem; margin: 48px 0 16px; padding-top: 8px; }
+h3 { font-size: 1.05rem; margin: 32px 0 12px; font-weight: 600; }
+h4 { font-size: .9rem; font-weight: 600; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+p { margin: 0 0 14px; max-width: 72ch; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Page header ── */
+.page-header {
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--border);
+}
+
+.doc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-top: 8px;
+  max-width: 64ch;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.meta-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+.meta-item .value { font-size: 1.05rem; font-weight: 600; margin-top: 2px; }
+
+/* ── Step sections ── */
+.step-section {
+  margin-bottom: 56px;
+  border-left: 3px solid var(--border);
+  padding-left: 24px;
+}
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--step-color);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.step-section h2 { margin-top: 0; padding-top: 0; }
+
+/* ── Code blocks ── */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-family: 'IBM Plex Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--code-text);
+}
+
+code {
+  font-family: 'IBM Plex Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+pre code { background: none; padding: 0; border-radius: 0; font-size: inherit; }
+
+/* ── Tables ── */
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+th {
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--surface2); }
+
+/* ── Status chips ── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  white-space: nowrap;
+}
+.chip-pass  { background: var(--pass-bg);  color: var(--pass); }
+.chip-fail  { background: var(--fail-bg);  color: var(--fail); }
+.chip-warn  { background: var(--warn-bg);  color: var(--warn); }
+.chip-info  { background: var(--accent-dim); color: var(--accent); }
+.chip-muted { background: var(--surface2); color: var(--muted); }
+
+/* ── Callout boxes ── */
+.callout {
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14px;
+  border-left: 4px solid;
+}
+.callout-info  { background: var(--accent-dim); border-color: var(--accent);  color: var(--text); }
+.callout-pass  { background: var(--pass-bg);   border-color: var(--pass);   color: var(--text); }
+.callout-fail  { background: var(--fail-bg);   border-color: var(--fail);   color: var(--text); }
+.callout-warn  { background: var(--warn-bg);   border-color: var(--warn);   color: var(--text); }
+.callout strong { font-weight: 700; }
+
+/* ── File tree ── */
+.file-tree {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.9;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  color: var(--text);
+}
+.file-tree .dir  { color: var(--accent); font-weight: 600; }
+.file-tree .file { color: var(--text); }
+.file-tree .note { color: var(--muted); }
+
+/* ── Results summary ── */
+.results-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+@media (max-width: 600px) { .results-bar { grid-template-columns: repeat(2, 1fr); } }
+
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.result-card .num  { font-size: 2rem; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+.result-card .lbl  { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin-top: 2px; }
+.rc-total .num { color: var(--text); }
+.rc-pass  .num { color: var(--pass); }
+.rc-fail  .num { color: var(--fail); }
+.rc-skip  .num { color: var(--warn); }
+.rc-err   .num { color: var(--muted); }
+
+/* ── Field mapping table row variants ── */
+.row-comparable   td:first-child::before { content: "✓ "; color: var(--pass); font-weight: 700; }
+.row-nc           td:first-child::before { content: "✗ "; color: var(--fail); font-weight: 700; }
+.row-excl         td:first-child::before { content: "– "; color: var(--muted); font-weight: 700; }
+
+/* ── Divider ── */
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+/* ── QA checklist ── */
+.qa-row td:first-child { font-variant-numeric: tabular-nums; width: 36px; color: var(--muted); font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+.qa-pass td:nth-child(3) { color: var(--pass); font-weight: 600; }
+.qa-fail td:nth-child(3) { color: var(--fail); font-weight: 600; }
+
+/* ── Print ── */
+@media print {
+  .sidebar { display: none !important; }
+  .shell   { display: block; }
+  main     { padding: 0; max-width: 100%; }
+  pre, table { page-break-inside: avoid; }
+  h2, h3    { page-break-after: avoid; }
+}
+</style>
+
+<div class="shell">
+
+<!-- ═══════════════════ SIDEBAR TOC ═══════════════════ -->
+<nav class="sidebar" aria-label="Table of contents">
+  <div class="sidebar-logo">Value Research</div>
+  <div class="sidebar-title">Portfolio Planner API Framework — Session Doc</div>
+  <ul class="toc">
+    <li><a href="#overview" class="toc-h2">Overview</a></li>
+    <li><a href="#toolchain" class="toc-h2">Toolchain &amp; Setup</a></li>
+    <li class="toc-step"><a href="#s0" class="toc-h2">Step 0 — Init</a></li>
+    <li class="toc-step"><a href="#s1" class="toc-h2">Step 1 — Config</a></li>
+    <li class="toc-step"><a href="#s2" class="toc-h2">Step 2 — Excel Data</a></li>
+    <li class="toc-step"><a href="#s3" class="toc-h2">Step 3 — API Clients</a></li>
+    <li class="toc-step"><a href="#s4" class="toc-h2">Step 4 — Payloads</a></li>
+    <li class="toc-step"><a href="#s5" class="toc-h2">Step 5 — Extraction</a></li>
+    <li class="toc-step"><a href="#s6" class="toc-h2">Step 6 — Normalization</a></li>
+    <li class="toc-step"><a href="#s7" class="toc-h2">Step 7 — Comparison</a></li>
+    <li class="toc-step"><a href="#s8" class="toc-h2">Step 8 — TestNG</a></li>
+    <li class="toc-step"><a href="#s9" class="toc-h2">Step 9 — Reporting</a></li>
+    <li><a href="#fieldmap" class="toc-h2">Field Mapping</a></li>
+    <li><a href="#structure" class="toc-h2">Project Structure</a></li>
+    <li><a href="#results" class="toc-h2">Final Test Results</a></li>
+    <li><a href="#qa" class="toc-h2">QA Checklist</a></li>
+    <li><a href="#limits" class="toc-h2">Known Limitations</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<main>
+
+<!-- ── Page Header ── -->
+<div class="page-header" id="overview">
+  <div class="doc-tag">Session Documentation</div>
+  <h1>Portfolio Planner API Comparison Framework</h1>
+  <p class="subtitle">A Java 17 + Maven + TestNG + REST Assured automation framework that compares business responses of two Portfolio Planner POST APIs — built end-to-end in a single engineering session.</p>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="label">Language</div>
+      <div class="value">Java 17</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Build</div>
+      <div class="value">Maven 3.8.7</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Test Runner</div>
+      <div class="value">TestNG 7.8.0</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">HTTP Client</div>
+      <div class="value">REST Assured 5.4.0</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Total Tests</div>
+      <div class="value">154</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Source Files</div>
+      <div class="value">41 Java files</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Toolchain ── -->
+<section id="toolchain">
+  <h2>Toolchain &amp; Environment</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Component</th><th>Version</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Java (OpenJDK)</td><td>17.0.20</td><td>JAVA_HOME = <code>/usr/lib/jvm/java-1.17.0-openjdk-amd64</code></td></tr>
+        <tr><td>Apache Maven</td><td>3.8.7</td><td>System-installed</td></tr>
+        <tr><td>TestNG</td><td>7.8.0</td><td>test scope</td></tr>
+        <tr><td>REST Assured</td><td>5.4.0</td><td>compile scope — clients in src/main/java</td></tr>
+        <tr><td>Jackson Databind</td><td>2.16.1</td><td>JSON serialization for API-1 payload</td></tr>
+        <tr><td>Apache POI (OOXML)</td><td>5.2.5</td><td>Excel read (test data) + write (result report)</td></tr>
+        <tr><td>SLF4J / Logback</td><td>2.0.10 / 1.4.14</td><td>Logging throughout the framework</td></tr>
+        <tr><td>OS</td><td>Ubuntu (Linux 6.17.0)</td><td>amd64</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══ STEP 0 ══ -->
+<section class="step-section" id="s0">
+  <div class="step-badge"><span class="step-num">0</span><span class="step-label">Project Initialization</span></div>
+  <h2>Maven Project Setup</h2>
+  <p>Created a dedicated project directory at <code>~/portfolio-planner-api-tests/</code>. The home directory already contained other projects so an explicit subdirectory was used.</p>
+
+  <h3>Key pom.xml decisions</h3>
+  <ul>
+    <li><code>rest-assured</code> declared as <strong>compile</strong> scope (not test) so that <code>Api1Client</code>, <code>Api2Client</code>, and <code>ApiResponse</code> — which live in <code>src/main/java</code> — can import REST Assured classes.</li>
+    <li>All other test-utility dependencies (TestNG) remain <code>test</code> scope.</li>
+    <li>Compiler and Surefire plugins both set to Java 17.</li>
+    <li>Surefire points to <code>testng.xml</code> via <code>&lt;suiteXmlFiles&gt;</code>.</li>
+  </ul>
+
+  <pre>maven.compiler.source = 17
+maven.compiler.target = 17
+
+testng              7.8.0        (test)
+rest-assured        5.4.0        (compile)
+json-path           5.4.0        (compile)
+jackson-databind    2.16.1       (compile)
+poi-ooxml           5.2.5        (compile)
+slf4j-api           2.0.10       (compile)
+logback-classic     1.4.14       (compile)</pre>
+
+  <h3>Initial smoke test</h3>
+  <p>Five classpath-only tests confirmed Maven + TestNG wiring before any business code was written:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Test</th><th>Verifies</th></tr></thead>
+    <tbody>
+      <tr><td><code>testNgSanityCheck</code></td><td>TestNG is wired</td></tr>
+      <tr><td><code>restAssuredClasspathCheck</code></td><td>REST Assured on classpath</td></tr>
+      <tr><td><code>jacksonClasspathCheck</code></td><td>Jackson ObjectMapper</td></tr>
+      <tr><td><code>apachePoiClasspathCheck</code></td><td>Apache POI WorkbookFactory</td></tr>
+      <tr><td><code>loggingCheck</code></td><td>SLF4J/Logback operational</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout callout-pass"><strong>Result:</strong> Tests run: 5, Failures: 0, Errors: 0 — BUILD SUCCESS</div>
+</section>
+
+
+<!-- ══ STEP 1 ══ -->
+<section class="step-section" id="s1">
+  <div class="step-badge"><span class="step-num">1</span><span class="step-label">Configuration Layer</span></div>
+  <h2>ConfigReader, HeaderManager &amp; config.properties</h2>
+
+  <h3>config.properties (non-sensitive values only)</h3>
+  <pre>api1.base.url              = https://qaappapi.valueresearch.in
+api1.endpoint              = /api/v1/planner/generate
+api1.timeout.connect       = 10        # seconds
+api1.timeout.read          = 30        # seconds
+
+api2.base.url              = https://advappapi.valueresearchonline.com
+api2.endpoint              = /api/v0/investment-plan/
+api2.timeout.connect       = 10
+api2.timeout.read          = 30
+
+api2.header.app.platform   = web
+api2.header.app.type       = web
+api2.header.app.version    =           # set per-env
+api2.header.site.code      =           # set per-env
+
+comparison.amount.tolerance = 0.01
+http.retry.count            = 2
+http.retry.delay.ms         = 1000</pre>
+
+  <h3>ConfigReader — three-layer resolution</h3>
+  <ol>
+    <li><strong>Environment variable</strong> (e.g. <code>API1_BASE_URL</code> overrides <code>api1.base.url</code>)</li>
+    <li><strong>Environment overlay file</strong> (<code>config-uat.properties</code> when <code>ENV=uat</code>)</li>
+    <li><strong>Base <code>config.properties</code></strong></li>
+  </ol>
+  <p>Sensitive values (tokens, cookies) are accessed via <code>getSensitiveEnv(String envVarName)</code>, which reads <em>only</em> from <code>System.getenv()</code> — never from any properties file.</p>
+
+  <h3>HeaderManager — sensitive header contract</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Header</th><th>API</th><th>Source env var</th><th>Sensitive?</th></tr></thead>
+    <tbody>
+      <tr><td><code>Content-Type: application/json</code></td><td>API-1</td><td>—</td><td>No</td></tr>
+      <tr><td><code>Authorization: Bearer …</code></td><td>API-1</td><td><code>API1_AUTH_TOKEN</code></td><td>Yes</td></tr>
+      <tr><td><code>Cookie</code></td><td>API-1</td><td><code>API1_COOKIE</code></td><td>Yes</td></tr>
+      <tr><td><code>Accept: application/json</code></td><td>API-2</td><td>—</td><td>No</td></tr>
+      <tr><td><code>app-platform</code></td><td>API-2</td><td>config / env</td><td>No</td></tr>
+      <tr><td><code>Authorization: Bearer …</code></td><td>API-2</td><td><code>API2_AUTH_TOKEN</code></td><td>Yes</td></tr>
+      <tr><td><code>auth-token</code></td><td>API-2</td><td><code>API2_AUTH_TOKEN_HEADER</code></td><td>Yes</td></tr>
+      <tr><td><code>json-api-key</code></td><td>API-2</td><td><code>API2_JSON_API_KEY</code></td><td>Yes</td></tr>
+      <tr><td><code>Cookie</code></td><td>API-2</td><td><code>API2_COOKIE</code></td><td>Yes</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Note:</strong> API-2 <code>Content-Type</code> is intentionally absent from HeaderManager — REST Assured injects the correct <code>multipart/form-data; boundary=…</code> automatically when <code>.multiPart()</code> is used.</p>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 16 config tests — all PASS</div>
+</section>
+
+
+<!-- ══ STEP 2 ══ -->
+<section class="step-section" id="s2">
+  <div class="step-badge"><span class="step-num">2</span><span class="step-label">Excel Test Data Layer</span></div>
+  <h2>TestData Model, ExcelReader &amp; Fixture Bootstrap</h2>
+
+  <h3>Excel columns — PortfolioPlanner_TestData.xlsx</h3>
+  <p>Location: <code>src/test/resources/testdata/PortfolioPlanner_TestData.xlsx</code> (generated by <code>ExcelFixtureBootstrap</code>, persisted across <code>mvn clean</code>).</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Type</th><th>Maps to</th></tr></thead>
+    <tbody>
+      <tr><td><code>TestCaseID</code></td><td>String</td><td><code>testCaseId</code></td></tr>
+      <tr><td><code>Execute</code></td><td>String</td><td><code>isExecutable()</code> — Y/y = run</td></tr>
+      <tr><td><code>Description</code></td><td>String</td><td><code>description</code></td></tr>
+      <tr><td><code>goal_type</code></td><td>String</td><td>both APIs</td></tr>
+      <tr><td><code>txn_options</code></td><td>String</td><td>both APIs</td></tr>
+      <tr><td><code>duration_type</code></td><td>String</td><td>both APIs</td></tr>
+      <tr><td><code>investment_duration</code></td><td>int</td><td>both APIs</td></tr>
+      <tr><td><code>monthly_amount</code></td><td>long</td><td>both APIs</td></tr>
+      <tr><td><code>lumpsum_amount</code></td><td>long</td><td>both APIs</td></tr>
+      <tr><td><code>risk_profile_id</code></td><td>int</td><td>both APIs</td></tr>
+      <tr><td><code>annual_income_range</code></td><td>int</td><td>both APIs</td></tr>
+      <tr><td><code>api1_label_id</code></td><td>long</td><td>API-1 only → <code>label_id</code></td></tr>
+      <tr><td><code>api1_user_id</code></td><td>long</td><td>API-1 only → <code>user_id</code></td></tr>
+      <tr><td><code>api1_aware_type</code></td><td>String</td><td>API-1 only → <code>aware_type</code></td></tr>
+      <tr><td><code>api1_investor_id</code></td><td>long</td><td>API-1 only → <code>investor_id</code></td></tr>
+      <tr><td><code>api2_label_id</code></td><td>long</td><td>API-2 only → <code>label_id</code></td></tr>
+      <tr><td><code>api2_user_id</code></td><td>long</td><td>API-2 only → <code>user_id</code></td></tr>
+      <tr><td><code>api2_investor_id</code></td><td>long</td><td>API-2 only → <code>investor_id</code></td></tr>
+      <tr><td><code>api2_next_financial_year</code></td><td>int</td><td>API-2 only</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Sample test case (TC_001)</h3>
+  <pre>TestCaseID            : TC_001
+Execute               : Y
+Description           : Basic GROWTH plan – SIP+Lumpsum, 15yr, risk=2
+goal_type             : GROWTH
+txn_options           : SIPLUMPSUM
+duration_type         : y
+investment_duration   : 15
+monthly_amount        : 50000
+lumpsum_amount        : 10000000
+risk_profile_id       : 2
+annual_income_range   : 2
+api1_label_id         : 89660240     api2_label_id     : 90222276
+api1_user_id          : 123          api2_user_id      : 52264629
+api1_aware_type       : FRESH        api2_next_fy      : 2028
+api1_investor_id      : 87683240     api2_investor_id  : 88244645</pre>
+
+  <h3>ExcelReader numeric safety</h3>
+  <p>Excel stores all numbers as <code>double</code> internally. <code>ExcelReader.formatDouble()</code> converts whole-number doubles to integer strings before <code>Long.parseLong()</code> — so <code>50000.0</code> → <code>"50000"</code>, never <code>"50000.0"</code>.</p>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 15 Excel data tests — all PASS</div>
+</section>
+
+
+<!-- ══ STEP 3 ══ -->
+<section class="step-section" id="s3">
+  <div class="step-badge"><span class="step-num">3</span><span class="step-label">API Client Layer</span></div>
+  <h2>ApiResponse, Api1Client &amp; Api2Client</h2>
+
+  <h3>ApiResponse — two factory methods</h3>
+  <pre>// Successful HTTP exchange (any status including 4xx/5xx):
+ApiResponse.of(String apiLabel, Response response)
+
+// Transport error (connection refused, timeout, DNS):
+ApiResponse.ofError(String apiLabel, long elapsedMs, Exception e)
+  → statusCode = -1, responseBody = ""</pre>
+
+  <p>The <code>getResponseBody()</code> always returns the body — there is no status-code guard. 4xx/5xx bodies are captured fully.</p>
+
+  <h3>Api1Client (JSON POST)</h3>
+  <ul>
+    <li>POST <code>https://qaappapi.valueresearch.in/api/v1/planner/generate</code></li>
+    <li><code>Content-Type: application/json</code></li>
+    <li>Timeouts: connect 10s, read 30s (from ConfigReader)</li>
+    <li>Payload provided by caller — client does not build it</li>
+    <li>Any exception caught → returns <code>ApiResponse.ofError()</code></li>
+  </ul>
+
+  <h3>Api2Client (multipart/form-data POST)</h3>
+  <ul>
+    <li>POST <code>https://advappapi.valueresearchonline.com/api/v0/investment-plan/</code></li>
+    <li>Content-Type set automatically by REST Assured (includes boundary)</li>
+    <li>Each entry in the <code>Map&lt;String,String&gt;</code> form fields becomes one <code>.multiPart(key, value)</code> call</li>
+    <li>Any exception caught → returns <code>ApiResponse.ofError()</code></li>
+  </ul>
+
+  <div class="callout callout-info"><strong>Design rule:</strong> Clients never create payloads. They receive a pre-built JSON string or form-field map and execute exactly one HTTP call.</div>
+  <div class="callout callout-pass"><strong>Integration smoke result:</strong> API-1 HTTP 200, API-2 HTTP 401 (expected — no credentials set)</div>
+</section>
+
+
+<!-- ══ STEP 4 ══ -->
+<section class="step-section" id="s4">
+  <div class="step-badge"><span class="step-num">4</span><span class="step-label">Payload Building Layer</span></div>
+  <h2>Api1JsonPayloadBuilder &amp; Api2FormDataPayloadBuilder</h2>
+
+  <h3>API-1 JSON payload (12 fields, insertion-ordered)</h3>
+  <pre>{
+  "goal_type":           "GROWTH",
+  "txn_options":         "SIPLUMPSUM",
+  "duration_type":       "y",
+  "investment_duration": 15,
+  "monthly_amount":      50000,
+  "lumpsum_amount":      10000000,
+  "label_id":            89660240,    ← api1_label_id
+  "user_id":             123,         ← api1_user_id
+  "risk_profile_id":     2,
+  "annual_income_range": 2,
+  "aware_type":          "FRESH",     ← api1_aware_type
+  "investor_id":         87683240     ← api1_investor_id
+}</pre>
+
+  <h3>API-2 multipart form-data (12 fields, insertion-ordered)</h3>
+  <pre>annual_income_range  = 2
+duration_type        = y
+goal_type            = GROWTH
+investment_duration  = 15
+investor_id          = 88244645    ← api2_investor_id
+label_id             = 90222276    ← api2_label_id
+monthly_amount       = 50000
+next_financial_year  = 2028        ← api2_next_financial_year
+risk_profile_id      = 2
+txn_options          = SIPLUMPSUM
+user_id              = 52264629    ← api2_user_id
+lumpsum_amount       = 10000000</pre>
+
+  <p>Both builders validate inputs (non-blank strings, positive IDs) and throw <code>IllegalArgumentException</code> with the specific field name if validation fails. No floating-point strings — all numeric values serialized as integers.</p>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 22 payload tests — all PASS. Key verifications: no floating-point, API-1/API-2 use different IDs, aware_type only in API-1, next_financial_year only in API-2.</div>
+</section>
+
+
+<!-- ══ STEP 5 ══ -->
+<section class="step-section" id="s5">
+  <div class="step-badge"><span class="step-num">5</span><span class="step-label">Response Parsing &amp; Extraction</span></div>
+  <h2>Domain Models &amp; Extractors</h2>
+
+  <h3>Domain models</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Class</th><th>Key fields</th></tr></thead>
+    <tbody>
+      <tr><td><code>TransactionLeg</code></td><td><code>rawType</code>, <code>normalizedType</code> (computed at construction), <code>amount</code></td></tr>
+      <tr><td><code>FundEntry</code></td><td><code>planId</code>, <code>planName</code>, <code>categoryId</code>, <code>categoryFmt</code>, <code>amount</code>, <code>List&lt;TransactionLeg&gt; legs</code></td></tr>
+      <tr><td><code>BreakdownEntry</code></td><td><code>categoryId</code>, <code>categoryFmt</code>, <code>percentage</code>, <code>percFmt</code> (string), <code>amount</code>; <code>resolvePercentage()</code> falls back to parsing <code>percFmt</code></td></tr>
+      <tr><td><code>ExtractedResponse</code></td><td><code>apiLabel</code>, <code>status</code>, <code>message</code>, <code>investorId</code>, <code>List&lt;FundEntry&gt;</code>, <code>List&lt;BreakdownEntry&gt;</code>, <code>notComparableFields</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Extraction source paths</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Business field</th><th>API-1 JSON path</th><th>API-2 JSON path</th></tr></thead>
+    <tbody>
+      <tr><td>Plan ID</td><td><code>plan_data.plan_id</code></td><td><code>plan_data.plan_id</code></td></tr>
+      <tr><td>Fund name</td><td><code>plan_data.name</code></td><td><code>plan_data.name</code></td></tr>
+      <tr><td>Category ID</td><td><code>category_data.category_id</code></td><td><code>category_data.category_id</code></td></tr>
+      <tr><td>Category name</td><td><code>category_data.category_fmt</code></td><td><code>category_data.category_fmt</code></td></tr>
+      <tr><td>Investment amount</td><td><code>first_month_amount</code></td><td><code>txn_data.amount</code></td></tr>
+      <tr><td>Transaction type</td><td><code>legs[].type / legs[].type_fmt</code></td><td><code>inv_data[].txn_type_name</code></td></tr>
+      <tr><td>Breakdown %</td><td><code>perc_fmt</code></td><td><code>perc_fmt</code></td></tr>
+      <tr><td>Investor ID</td><td><code>data.investor.investor_id</code></td><td><code>data.investor.investor_id</code></td></tr>
+      <tr><td>API status</td><td><code>data.status</code></td><td><code>data.status</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Both extractors wrap their entire logic in <code>try/catch(Exception)</code> and return <code>ExtractedResponse.failed(apiLabel, e.getMessage())</code> on any error — they never throw.</p>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 34 extraction tests — all PASS (tested on stored JSON fixtures; no live API calls)</div>
+</section>
+
+
+<!-- ══ STEP 6 ══ -->
+<section class="step-section" id="s6">
+  <div class="step-badge"><span class="step-num">6</span><span class="step-label">Normalization Layer</span></div>
+  <h2>FieldMapping, Normalizers &amp; ResponseNormalizer</h2>
+
+  <h3>CurrencyNormalizer</h3>
+  <pre>CurrencyNormalizer.parse("₹50,000")   → BigDecimal(50000)
+CurrencyNormalizer.parse("1,00,000")  → BigDecimal(100000)   // Indian lakh
+CurrencyNormalizer.parse("40.00%")    → BigDecimal(40.00)
+CurrencyNormalizer.parse("50000")     → BigDecimal(50000)</pre>
+  <p>Strips <code>₹$€£%,</code> and whitespace; parses the remainder. Returns <code>null</code> for null/blank/unparseable input — never throws.</p>
+
+  <h3>TransactionTypeNormalizer</h3>
+  <pre>normalize("sip")       → "SIP"
+normalize("SIP")       → "SIP"
+normalize("one_time")  → "ONE_TIME"
+normalize("One-time")  → "ONE_TIME"
+normalize("unknown")   → "UNKNOWN"   // uppercase pass-through</pre>
+
+  <h3>FundNameNormalizer</h3>
+  <pre>normalize("Alpha Fund Dir-G")    → "Alpha Fund Direct-G"
+normalize("Beta Dir- G Fund")    → "Beta Direct-G Fund"
+normalize("Already Direct-G")   → "Already Direct-G"  (unchanged)</pre>
+  <p>Uses <code>Pattern.compile("\\bDir-G\\b")</code> (word boundary) to prevent partial-match replacement.</p>
+
+  <h3>ResponseNormalizer</h3>
+  <p>Applies all normalizers to a full <code>ExtractedResponse</code> and returns a new immutable instance:</p>
+  <ol>
+    <li><code>FundNameNormalizer.normalize(planName)</code> on every fund</li>
+    <li><code>BreakdownEntry.resolvePercentage()</code> promotes <code>percFmt</code> strings to <code>BigDecimal</code> when the numeric field is absent</li>
+    <li>Transaction legs already carry <code>normalizedType</code> — no extra work needed</li>
+  </ol>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 42 normalization tests — all PASS</div>
+</section>
+
+
+<!-- ══ STEP 7 ══ -->
+<section class="step-section" id="s7">
+  <div class="step-badge"><span class="step-num">7</span><span class="step-label">Comparison Engine</span></div>
+  <h2>ResponseComparator, Mismatch &amp; ComparisonResult</h2>
+
+  <h3>MismatchType enum</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Type</th><th>Meaning</th><th>Causes FAIL?</th></tr></thead>
+    <tbody>
+      <tr><td><code>STATUS_MISMATCH</code></td><td>HTTP status codes differ</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>COUNT_MISMATCH</code></td><td>Fund or breakdown count differs</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>MISSING_FIELD</code></td><td>Fund/field in API-1 absent in API-2</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>EXTRA_FIELD</code></td><td>Fund/field in API-2 absent in API-1</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>VALUE_MISMATCH</code></td><td>String values differ</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>TYPE_MISMATCH</code></td><td>One side null, other not</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>BUSINESS_VALUE_MISMATCH</code></td><td>Numeric difference beyond tolerance</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>API_EXECUTION_ERROR</code></td><td>Network error or extraction failure</td><td><span class="chip chip-fail">YES</span></td></tr>
+      <tr><td><code>NORMALIZATION_DIFFERENCE</code></td><td>Raw values differ but normalize to same (e.g. Dir-G vs Direct-G)</td><td><span class="chip chip-pass">NO (informational)</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Mismatch structure</h3>
+  <pre>Mismatch {
+  testCaseId   : "TC_001"
+  fieldPath    : "funds_data.data[plan_id=PLAN_001].investment_amount"
+  api1Value    : "82000"
+  api2Value    : "75000"
+  mismatchType : BUSINESS_VALUE_MISMATCH
+  message      : "Values differ by 7000 (tolerance: 0.01)"
+}</pre>
+
+  <h3>Comparison order (12 steps)</h3>
+  <ol>
+    <li>HTTP status codes</li>
+    <li>Extraction success check</li>
+    <li>API response <code>status</code> string</li>
+    <li>Fund count</li>
+    <li>Fund matching by <code>plan_id</code> — MISSING_FIELD / EXTRA_FIELD for unmatched</li>
+    <li>Category ID (per matched fund)</li>
+    <li>Category name</li>
+    <li>Fund name (with FundNameNormalizer)</li>
+    <li>Investment amount (BigDecimal tolerance)</li>
+    <li>Transaction types present</li>
+    <li>Transaction amounts per type</li>
+    <li>Breakdown category + percentage</li>
+  </ol>
+
+  <div class="callout callout-info"><strong>Key constraint:</strong> Comparison never stops at first mismatch. ALL mismatches are collected before <code>ComparisonResult</code> is returned. Fund arrays are NEVER compared by index — always matched by <code>plan_id</code>.</div>
+
+  <h3>ComparisonResult verdict</h3>
+  <pre>isPassed()  ← true when getFailingMismatchCount() == 0
+             (NORMALIZATION_DIFFERENCE excluded from failing count)
+getVerdict() ← "PASS" or "FAIL"</pre>
+
+  <h3>Unit test scenarios covered</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Scenario</th><th>Expected verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Exact match</td><td><span class="chip chip-pass">PASS</span></td></tr>
+      <tr><td>Fund missing in API-2</td><td><span class="chip chip-fail">FAIL</span> — COUNT_MISMATCH + MISSING_FIELD</td></tr>
+      <tr><td>Extra fund in API-2</td><td><span class="chip chip-fail">FAIL</span> — COUNT_MISMATCH + EXTRA_FIELD</td></tr>
+      <tr><td>Amount mismatch (82000 vs 75000)</td><td><span class="chip chip-fail">FAIL</span> — BUSINESS_VALUE_MISMATCH</td></tr>
+      <tr><td>Category mismatch</td><td><span class="chip chip-fail">FAIL</span> — ≥2 VALUE_MISMATCH</td></tr>
+      <tr><td>Breakdown % mismatch (75% vs 70%)</td><td><span class="chip chip-fail">FAIL</span></td></tr>
+      <tr><td>Multiple mismatches at once</td><td><span class="chip chip-fail">FAIL</span> — all collected</td></tr>
+      <tr><td>Different fund array order</td><td><span class="chip chip-pass">PASS</span> — matched by plan_id</td></tr>
+      <tr><td>"Dir-G" vs "Direct-G"</td><td><span class="chip chip-pass">PASS</span> — NORMALIZATION_DIFFERENCE (informational)</td></tr>
+      <tr><td>Amount within tolerance (0.005 ≤ 0.01)</td><td><span class="chip chip-pass">PASS</span></td></tr>
+      <tr><td>Amount outside tolerance (7000 &gt; 0.01)</td><td><span class="chip chip-fail">FAIL</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout callout-pass"><strong>Result:</strong> 18 comparator tests — all PASS</div>
+</section>
+
+
+<!-- ══ STEP 8 ══ -->
+<section class="step-section" id="s8">
+  <div class="step-badge"><span class="step-num">8</span><span class="step-label">TestNG Integration</span></div>
+  <h2>ApiComparisonTest — DataProvider + Full Pipeline</h2>
+
+  <h3>Per-row pipeline</h3>
+  <pre>@DataProvider → ExcelReader.asDataProvider()     (Execute=Y rows only)
+
+Step 3   →  Api1JsonPayloadBuilder.build(testData)
+Step 4   →  Api2FormDataPayloadBuilder.build(testData)
+Steps 5&6 →  Api1Client.post()  /  Api2Client.post()
+Step 7   →  Log: HTTP status + response time
+Step 8   →  Api1ResponseExtractor.extract(body)  /  Api2ResponseExtractor.extract(body)
+Step 9   →  ResponseNormalizer.normalize(ext1)   /  ResponseNormalizer.normalize(ext2)
+Steps 10-12 → ResponseComparator.compare(…)      ← ALL mismatches collected here
+Step 13-14  → Assert.assertTrue(result.isPassed(), fullMismatchDetail)</pre>
+
+  <h3>Error handling</h3>
+  <pre>try {
+    /* pipeline */
+    rb.executionStatus("PASS" or "FAIL");
+    Assert.assertTrue(result.isPassed(), message);
+} catch (AssertionError ae) {
+    throw ae;    // TestNG marks FAIL; result already recorded
+} catch (Exception e) {
+    rb.executionStatus("ERROR");
+    Assert.fail("...");
+} finally {
+    ResultCollector.add(rb.build());  // always records
+}</pre>
+
+  <p>One failed DataProvider row does <strong>not</strong> stop remaining rows. TestNG continues naturally to the next <code>Object[]</code> element.</p>
+
+  <h3>testng.xml suite order</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Suite name</th><th>Group</th><th>Tests</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Smoke Tests</td><td><code>smoke</code></td><td>5</td></tr>
+      <tr><td>2</td><td>Configuration Tests</td><td><code>config</code></td><td>16</td></tr>
+      <tr><td>3</td><td>Excel Data Layer Tests</td><td><code>excel</code></td><td>15</td></tr>
+      <tr><td>4</td><td>Payload Builder Tests</td><td><code>payload</code></td><td>22</td></tr>
+      <tr><td>5</td><td>Response Extraction Tests</td><td><code>extraction</code></td><td>34</td></tr>
+      <tr><td>6</td><td>Normalization Tests</td><td><code>normalize</code></td><td>42</td></tr>
+      <tr><td>7</td><td>Comparator Tests</td><td><code>compare</code></td><td>18</td></tr>
+      <tr><td>8</td><td>Integration Smoke</td><td><code>integration</code></td><td>1</td></tr>
+      <tr><td>9</td><td>API Comparison Tests</td><td><code>api-comparison</code></td><td>1 (TC_001)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+
+<!-- ══ STEP 9 ══ -->
+<section class="step-section" id="s9">
+  <div class="step-badge"><span class="step-num">9</span><span class="step-label">Reporting Layer</span></div>
+  <h2>ExcelResultWriter — target/reports/API_Comparison_Result.xlsx</h2>
+
+  <h3>Output columns</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>TestCaseID</td><td>String</td><td></td></tr>
+      <tr><td>Description</td><td>String</td><td></td></tr>
+      <tr><td>ExecutionStatus</td><td>String</td><td>PASS (green) / FAIL (red) / ERROR (amber)</td></tr>
+      <tr><td>API1_HTTP_Status</td><td>Integer</td><td></td></tr>
+      <tr><td>API2_HTTP_Status</td><td>Integer</td><td></td></tr>
+      <tr><td>API1_Response_Time (ms)</td><td>Long</td><td></td></tr>
+      <tr><td>API2_Response_Time (ms)</td><td>Long</td><td></td></tr>
+      <tr><td>API1_Fund_Count</td><td>Integer / "N/A"</td><td>-1 stored as "N/A" when extraction failed</td></tr>
+      <tr><td>API2_Fund_Count</td><td>Integer / "N/A"</td><td></td></tr>
+      <tr><td>Comparison_Result</td><td>String</td><td>PASS (green) / FAIL (red) / N/A</td></tr>
+      <tr><td>Mismatch_Count</td><td>Integer</td><td></td></tr>
+      <tr><td>Mismatch_Details</td><td>Multi-line String</td><td>wrapText=true; one block per failing mismatch</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Mismatch_Details format (per failing mismatch)</h3>
+  <pre>Mismatch 1:
+Path: funds_data.data[plan_id=PLAN_001].investment_amount
+API-1: 82000
+API-2: 75000
+Type: BUSINESS_VALUE_MISMATCH
+
+Mismatch 2:
+Path: breakdown_funds_data.data[category_id=LC001].percentage
+API-1: 75
+API-2: 70
+Type: BUSINESS_VALUE_MISMATCH</pre>
+
+  <h3>Generation guarantee</h3>
+  <p><code>@AfterSuite(alwaysRun = true)</code> on <code>ApiComparisonTest.generateReport()</code> ensures the report is always attempted, even when tests fail. Internal exceptions in the writer are caught and logged — they are never rethrown, so the report attempt never breaks the suite exit code further.</p>
+
+  <div class="callout callout-info">Input Excel (<code>src/test/resources/testdata/PortfolioPlanner_TestData.xlsx</code>) and output Excel (<code>target/reports/API_Comparison_Result.xlsx</code>) are on disjoint paths. The writer never reads the input file.</div>
+</section>
+
+<hr>
+
+<!-- ── FIELD MAPPING TABLE ── -->
+<section id="fieldmap">
+  <h2>Field Mapping Registry (FieldMapping.ALL)</h2>
+  <p>All 14 registered mappings. Source of truth for which API-1 JSON path corresponds to which API-2 JSON path, and whether the pair can be compared.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Status</th><th>Business field</th><th>API-1 path</th><th>API-2 path</th><th>Normalization</th></tr></thead>
+    <tbody>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Fund list</td><td><code>funds_data.data</code></td><td><code>funds_data.data</code></td><td>Match by <code>plan_id</code>, not index</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Plan ID (identity key)</td><td><code>plan_data.plan_id</code></td><td><code>plan_data.plan_id</code></td><td>None</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Fund name</td><td><code>plan_data.name</code></td><td><code>plan_data.name</code></td><td>FundNameNormalizer: Dir-G → Direct-G</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Category ID</td><td><code>category_data.category_id</code></td><td><code>category_data.category_id</code></td><td>None</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Category name</td><td><code>category_data.category_fmt</code></td><td><code>category_data.category_fmt</code></td><td>None</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Investment amount</td><td><code>first_month_amount</code></td><td><code>txn_data.amount</code></td><td>CurrencyNormalizer + tolerance</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Transaction type</td><td><code>legs[].type / type_fmt</code></td><td><code>inv_data[].txn_type_name</code></td><td>TransactionTypeNormalizer</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Breakdown list</td><td><code>breakdown_funds_data.data</code></td><td><code>breakdown_funds_data.data</code></td><td>Match by <code>category_id</code></td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>Breakdown %</td><td><code>perc_fmt</code></td><td><code>perc_fmt</code></td><td>CurrencyNormalizer.parsePercentage()</td></tr>
+      <tr class="row-comparable"><td><span class="chip chip-pass">COMPARABLE</span></td><td>API status</td><td><code>data.status</code></td><td><code>data.status</code></td><td>Exact string match</td></tr>
+      <tr class="row-nc"><td><span class="chip chip-fail">NOT COMPARABLE</span></td><td>Message</td><td><code>data.message</code></td><td>(absent)</td><td>API-1 only field</td></tr>
+      <tr class="row-nc"><td><span class="chip chip-fail">NOT COMPARABLE</span></td><td>Leg frequency/duration</td><td><code>legs[].frequency / .duration</code></td><td>(absent)</td><td>No equivalent in API-2</td></tr>
+      <tr class="row-excl"><td><span class="chip chip-muted">EXCLUDED</span></td><td>port_builder_id</td><td><code>port_builder_id</code></td><td><code>port_builder_id</code></td><td>Generated technical ID</td></tr>
+      <tr class="row-excl"><td><span class="chip chip-muted">EXCLUDED</span></td><td>output_id</td><td><code>output_id</code></td><td><code>output_id</code></td><td>Generated technical ID</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<!-- ── PROJECT STRUCTURE ── -->
+<section id="structure">
+  <h2>Final Project Structure</h2>
+  <div class="file-tree">
+<span class="dir">portfolio-planner-api-tests/</span>
+├── <span class="file">pom.xml</span>                             <span class="note">Java 17, REST Assured compile-scope</span>
+├── <span class="file">testng.xml</span>                          <span class="note">9 ordered test suites</span>
+├── <span class="dir">src/main/java/com/vr/portfolioplanner/</span>
+│   ├── <span class="dir">client/</span>
+│   │   ├── <span class="file">Api1Client.java</span>               <span class="note">POST JSON → ApiResponse</span>
+│   │   ├── <span class="file">Api2Client.java</span>               <span class="note">POST multipart → ApiResponse</span>
+│   │   └── <span class="file">ApiResponse.java</span>              <span class="note">Immutable wrapper; of() + ofError()</span>
+│   ├── <span class="dir">compare/</span>
+│   │   ├── <span class="file">BreakdownComparator.java</span>      <span class="note">Per-breakdown comparison</span>
+│   │   ├── <span class="file">ComparisonResult.java</span>         <span class="note">PASS/FAIL verdict + mismatch list</span>
+│   │   ├── <span class="file">FundComparator.java</span>           <span class="note">Per-fund field comparison</span>
+│   │   ├── <span class="file">Mismatch.java</span>                 <span class="note">testCaseId/path/api1/api2/type/msg</span>
+│   │   ├── <span class="file">MismatchType.java</span>             <span class="note">9 types; NORMALIZATION_DIFFERENCE non-failing</span>
+│   │   ├── <span class="file">ResponseComparator.java</span>       <span class="note">12-step orchestrator</span>
+│   │   └── <span class="file">ValueComparator.java</span>          <span class="note">Atomic string/BigDecimal comparisons</span>
+│   ├── <span class="dir">config/</span>
+│   │   ├── <span class="file">ConfigReader.java</span>             <span class="note">3-layer: env > overlay > base</span>
+│   │   └── <span class="file">HeaderManager.java</span>            <span class="note">Sensitive from env only</span>
+│   ├── <span class="dir">excel/</span>
+│   │   └── <span class="file">ExcelReader.java</span>              <span class="note">POI; numeric safety; column-index mapping</span>
+│   ├── <span class="dir">model/</span>
+│   │   └── <span class="file">TestData.java</span>                 <span class="note">19 typed fields; isExecutable()</span>
+│   ├── <span class="dir">normalize/</span>
+│   │   ├── <span class="file">ComparabilityStatus.java</span>      <span class="note">COMPARABLE/NOT_COMPARABLE/EXCLUDED</span>
+│   │   ├── <span class="file">CurrencyNormalizer.java</span>       <span class="note">₹50,000 → BigDecimal</span>
+│   │   ├── <span class="file">FieldMapping.java</span>             <span class="note">14-entry registry</span>
+│   │   ├── <span class="file">FundNameNormalizer.java</span>       <span class="note">Dir-G → Direct-G</span>
+│   │   ├── <span class="file">ResponseNormalizer.java</span>       <span class="note">Applies all normalizers</span>
+│   │   └── <span class="file">TransactionTypeNormalizer.java</span> <span class="note">sip/One-time → SIP/ONE_TIME</span>
+│   ├── <span class="dir">payload/</span>
+│   │   ├── <span class="file">Api1JsonPayloadBuilder.java</span>   <span class="note">Jackson + LinkedHashMap; api1_* cols</span>
+│   │   └── <span class="file">Api2FormDataPayloadBuilder.java</span> <span class="note">Ordered Map; api2_* cols</span>
+│   ├── <span class="dir">report/</span>
+│   │   ├── <span class="file">ExcelResultWriter.java</span>        <span class="note">POI writer; color-coded; formatMismatchDetails()</span>
+│   │   ├── <span class="file">ResultCollector.java</span>          <span class="note">CopyOnWriteArrayList singleton</span>
+│   │   └── <span class="file">TestCaseResult.java</span>           <span class="note">11-field immutable record + Builder</span>
+│   └── <span class="dir">response/</span>
+│       ├── <span class="file">Api1ResponseExtractor.java</span>    <span class="note">legs[].type → TransactionLeg</span>
+│       ├── <span class="file">Api2ResponseExtractor.java</span>    <span class="note">inv_data[].txn_type_name → TransactionLeg</span>
+│       └── <span class="dir">model/</span>
+│           ├── <span class="file">BreakdownEntry.java</span>           <span class="note">percFmt + resolvePercentage()</span>
+│           ├── <span class="file">ExtractedResponse.java</span>        <span class="note">getFundByPlanId(); notComparableFields</span>
+│           ├── <span class="file">FundEntry.java</span>                <span class="note">6 fields incl. List&lt;TransactionLeg&gt;</span>
+│           └── <span class="file">TransactionLeg.java</span>           <span class="note">rawType + normalizedType (auto-computed)</span>
+├── <span class="dir">src/main/resources/</span>
+│   └── <span class="file">config.properties</span>               <span class="note">Non-sensitive config; see §1 above</span>
+├── <span class="dir">src/test/java/com/vr/portfolioplanner/</span>
+│   ├── <span class="dir">compare/</span>     <span class="file">ComparatorTest.java</span>           <span class="note">18 unit tests</span>
+│   ├── <span class="dir">config/</span>      <span class="file">ConfigReaderTest.java</span>         <span class="note">16 unit tests</span>
+│   ├── <span class="dir">excel/</span>       <span class="file">ExcelFixtureBootstrap.java</span>    <span class="note">Generates the .xlsx fixture</span>
+│   │             <span class="file">ExcelReaderTest.java</span>          <span class="note">15 unit tests</span>
+│   ├── <span class="dir">integration/</span> <span class="file">PortfolioPlannerIntegrationTest.java</span> <span class="note">Temporary; prints status only</span>
+│   ├── <span class="dir">normalize/</span>   <span class="file">NormalizerTest.java</span>           <span class="note">42 unit tests</span>
+│   ├── <span class="dir">payload/</span>     <span class="file">PayloadBuilderTest.java</span>       <span class="note">22 unit tests</span>
+│   ├── <span class="dir">response/</span>    <span class="file">ResponseExtractorTest.java</span>    <span class="note">34 unit tests</span>
+│   ├── <span class="dir">smoke/</span>       <span class="file">SmokeTest.java</span>                <span class="note">5 classpath smoke tests</span>
+│   └── <span class="dir">test/</span>        <span class="file">ApiComparisonTest.java</span>        <span class="note">DataProvider + @AfterSuite report</span>
+├── <span class="dir">src/test/resources/</span>
+│   ├── <span class="file">logback-test.xml</span>
+│   ├── <span class="dir">sample-responses/</span>               <span class="note">4 JSON fixtures (no live calls in unit tests)</span>
+│   └── <span class="dir">testdata/</span>
+│       └── <span class="file">PortfolioPlanner_TestData.xlsx</span>
+└── <span class="dir">target/reports/</span>
+    └── <span class="file">API_Comparison_Result.xlsx</span>      <span class="note">← generated result report</span>
+  </div>
+</section>
+
+<hr>
+
+<!-- ── FINAL TEST RESULTS ── -->
+<section id="results">
+  <h2>Final Test Results</h2>
+
+  <div class="results-bar">
+    <div class="result-card rc-total"><div class="num">154</div><div class="lbl">Total</div></div>
+    <div class="result-card rc-pass"><div class="num">153</div><div class="lbl">PASS</div></div>
+    <div class="result-card rc-fail"><div class="num">1</div><div class="lbl">FAIL</div></div>
+    <div class="result-card rc-skip"><div class="num">0</div><div class="lbl">SKIP</div></div>
+    <div class="result-card rc-err"><div class="num">0</div><div class="lbl">ERROR</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>TC_001 FAIL is expected.</strong> API-2 returns HTTP 401 because the environment variables <code>API2_AUTH_TOKEN_HEADER</code>, <code>API2_JSON_API_KEY</code>, and/or <code>API2_COOKIE</code> are not set in the current environment. Once set, TC_001 will exercise the full business comparison pipeline.
+  </div>
+
+  <h3>Result Excel content for TC_001</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>ExecutionStatus</td><td><span class="chip chip-fail">FAIL</span></td></tr>
+      <tr><td>API1_HTTP_Status</td><td>200</td></tr>
+      <tr><td>API2_HTTP_Status</td><td>401</td></tr>
+      <tr><td>API1_Response_Time</td><td>~800 ms</td></tr>
+      <tr><td>API2_Response_Time</td><td>~100 ms</td></tr>
+      <tr><td>API1_Fund_Count</td><td>4</td></tr>
+      <tr><td>API2_Fund_Count</td><td>N/A (extraction failed)</td></tr>
+      <tr><td>Comparison_Result</td><td><span class="chip chip-fail">FAIL</span></td></tr>
+      <tr><td>Mismatch_Count</td><td>2</td></tr>
+      <tr><td>Mismatch_Details</td><td>Mismatch 1: Path: http.status, API-1: 200, API-2: 401, Type: STATUS_MISMATCH ‖ Mismatch 2: Path: api2.extraction, Type: API_EXECUTION_ERROR</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<!-- ── QA CHECKLIST ── -->
+<section id="qa">
+  <h2>30-Item QA Checklist — All Pass</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Item</th><th>Status</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr class="qa-row qa-pass"><td>1</td><td>Java 17 compatibility</td><td>✅ PASS</td><td>pom.xml: source/target = 17; maven-compiler-plugin 3.11.0</td></tr>
+      <tr class="qa-row qa-pass"><td>2</td><td>Maven build</td><td>✅ PASS</td><td>rest-assured compile scope; TestNG test scope</td></tr>
+      <tr class="qa-row qa-pass"><td>3</td><td>TestNG configuration</td><td>✅ PASS</td><td>9 suites in testng.xml; @DataProvider(parallel=false); @AfterSuite(alwaysRun=true)</td></tr>
+      <tr class="qa-row qa-pass"><td>4</td><td>Excel reading</td><td>✅ PASS</td><td>RETURN_BLANK_AS_NULL policy; formatDouble() integer safety</td></tr>
+      <tr class="qa-row qa-pass"><td>5</td><td>API-1 JSON payload</td><td>✅ PASS</td><td>Uses api1_label_id, api1_user_id, api1_aware_type, api1_investor_id</td></tr>
+      <tr class="qa-row qa-pass"><td>6</td><td>API-2 form-data payload</td><td>✅ PASS</td><td>Uses api2_label_id, api2_user_id, api2_investor_id, api2_next_financial_year</td></tr>
+      <tr class="qa-row qa-pass"><td>7</td><td>API auth configuration</td><td>✅ PASS</td><td>getSensitiveEnv() reads System.getenv() only; no values in config.properties</td></tr>
+      <tr class="qa-row qa-pass"><td>8</td><td>API response capture</td><td>✅ PASS</td><td>response.getBody().asString() has no status guard; 4xx/5xx bodies captured</td></tr>
+      <tr class="qa-row qa-pass"><td>9</td><td>Response parsing</td><td>✅ PASS</td><td>Extractors catch Exception → ExtractedResponse.failed(); never throw</td></tr>
+      <tr class="qa-row qa-pass"><td>10</td><td>Response normalization</td><td>✅ PASS</td><td>ResponseNormalizer applies FundNameNormalizer + percFmt resolution</td></tr>
+      <tr class="qa-row qa-pass"><td>11</td><td>plan_id fund matching</td><td>✅ PASS</td><td>LinkedHashMap&lt;String, FundEntry&gt; keyed by planId; no array index comparison</td></tr>
+      <tr class="qa-row qa-pass"><td>12</td><td>BigDecimal for monetary values</td><td>✅ PASS</td><td>FundEntry.amount, BreakdownEntry.percentage all BigDecimal</td></tr>
+      <tr class="qa-row qa-pass"><td>13</td><td>Numeric tolerance</td><td>✅ PASS</td><td>ValueComparator.compareAmounts() uses a.subtract(b).abs().compareTo(tolerance)</td></tr>
+      <tr class="qa-row qa-pass"><td>14</td><td>Transaction type normalization</td><td>✅ PASS</td><td>TransactionLeg constructor calls TransactionTypeNormalizer.normalize(rawType)</td></tr>
+      <tr class="qa-row qa-pass"><td>15</td><td>Fund name normalization</td><td>✅ PASS</td><td>Word-boundary regex Pattern.compile("\\bDir-G\\b") → "Direct-G"</td></tr>
+      <tr class="qa-row qa-pass"><td>16</td><td>Breakdown comparison</td><td>✅ PASS</td><td>Matched by category_id; resolvePercentage() for numeric comparison</td></tr>
+      <tr class="qa-row qa-pass"><td>17</td><td>Missing fund detection</td><td>✅ PASS</td><td>MISSING_FIELD when plan in API-1 map not in API-2 map</td></tr>
+      <tr class="qa-row qa-pass"><td>18</td><td>Extra fund detection</td><td>✅ PASS</td><td>EXTRA_FIELD when plan in API-2 map not in API-1 map</td></tr>
+      <tr class="qa-row qa-pass"><td>19</td><td>Multiple mismatch collection</td><td>✅ PASS</td><td>No early return; all sub-comparators addAll() their results</td></tr>
+      <tr class="qa-row qa-pass"><td>20</td><td>HTTP status mismatch</td><td>✅ PASS</td><td>compareHttpStatus() → STATUS_MISMATCH when codes differ</td></tr>
+      <tr class="qa-row qa-pass"><td>21</td><td>API error handling</td><td>✅ PASS</td><td>ApiResponse.ofError(); ExtractedResponse.failed(); API_EXECUTION_ERROR mismatch</td></tr>
+      <tr class="qa-row qa-pass"><td>22</td><td>PASS/FAIL/ERROR/SKIP handling</td><td>✅ PASS</td><td>try/catch/finally always records; @AfterSuite alwaysRun=true</td></tr>
+      <tr class="qa-row qa-pass"><td>23</td><td>Result Excel generation</td><td>✅ PASS</td><td>@AfterSuite → ExcelResultWriter.write() → target/reports/API_Comparison_Result.xlsx</td></tr>
+      <tr class="qa-row qa-pass"><td>24</td><td>No secret/token in logs</td><td>✅ PASS</td><td>Clients log headers.keySet() (key names only); no getSensitiveEnv() value in any log statement</td></tr>
+      <tr class="qa-row qa-pass"><td>25</td><td>No Thread.sleep()</td><td>✅ PASS</td><td>grep across all 41 Java files: zero results</td></tr>
+      <tr class="qa-row qa-pass"><td>26</td><td>No hardcoded test data</td><td>✅ PASS</td><td>ApiComparisonTest reads from ExcelReader only; builders read from TestData only</td></tr>
+      <tr class="qa-row qa-pass"><td>27</td><td>No hardcoded credentials</td><td>✅ PASS</td><td>config.properties contains no tokens; HeaderManager uses getSensitiveEnv() for all auth headers</td></tr>
+      <tr class="qa-row qa-pass"><td>28</td><td>Input Excel not overwritten</td><td>✅ PASS</td><td>Input: src/test/resources/testdata/… Output: target/reports/… — disjoint paths</td></tr>
+      <tr class="qa-row qa-pass"><td>29</td><td>One failed test does not stop suite</td><td>✅ PASS</td><td>TestNG DataProvider continues naturally; catch(AssertionError) re-throws without blocking next row</td></tr>
+      <tr class="qa-row qa-pass"><td>30</td><td>Raw JSON not compared directly</td><td>✅ PASS</td><td>All comparators operate on ExtractedResponse / FundEntry / BreakdownEntry objects; no String.equals() on JSON strings</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<!-- ── KNOWN LIMITATIONS ── -->
+<section id="limits">
+  <h2>Known Limitations</h2>
+
+  <h3>1. TC_001 currently FAIL (credentials not set)</h3>
+  <p>API-2 requires environment variables to be set before the full comparison can be exercised. Set the following before running:</p>
+  <pre>export API2_AUTH_TOKEN_HEADER="&lt;your-auth-token&gt;"
+export API2_JSON_API_KEY="&lt;your-json-api-key&gt;"
+export API2_COOKIE="&lt;your-session-cookie&gt;"
+# Optional:
+export API1_AUTH_TOKEN="&lt;api1-bearer-token&gt;"</pre>
+
+  <h3>2. NOT_COMPARABLE fields</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Field</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td><code>data.message</code> (API-1)</td><td>API-1 only; API-2 has no equivalent field</td></tr>
+      <tr><td><code>legs[].frequency / .duration</code> (API-1)</td><td>API-1 leg metadata with no structural equivalent in API-2 <code>inv_data</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>3. EXCLUDED fields (never compared)</h3>
+  <ul>
+    <li><code>port_builder_id</code> — generated per-request technical identifier</li>
+    <li><code>output_id</code> — generated per-request technical identifier</li>
+  </ul>
+
+  <h3>4. FundNameNormalizer is explicit-only</h3>
+  <p>Currently handles one known substitution: <code>Dir-G → Direct-G</code>. Any new display difference discovered in production must be added explicitly to <code>FundNameNormalizer.SUBSTITUTIONS</code>. Fuzzy matching is intentionally disabled.</p>
+
+  <h3>5. Single test case in Excel</h3>
+  <p><code>PortfolioPlanner_TestData.xlsx</code> currently contains one row (TC_001). QA engineers can add more rows directly in Excel; <code>Execute=N</code> rows are automatically skipped by <code>ExcelReader.asDataProvider()</code>.</p>
+
+  <h3>6. No parallel execution</h3>
+  <p>The DataProvider is configured with <code>parallel=false</code>. For parallel API calls, the DataProvider can be changed to <code>parallel=true</code> and <code>ResultCollector</code> is already thread-safe (<code>CopyOnWriteArrayList</code>).</p>
+</section>
+
+</main>
+</div>

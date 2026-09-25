@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>TestNG:  Configuration Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Configuration Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>20/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (35 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>config </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.comparisonToleranceIsValid()'><b>comparisonToleranceIsValid</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: comparison.amount.tolerance is a non-negative double</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1EndpointIsLoaded()'><b>api1EndpointIsLoaded</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api1.endpoint is loaded and starts with /</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.comparisonPercentageToleranceIsValid()'><b>comparisonPercentageToleranceIsValid</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: comparison.percentage.tolerance is a non-negative double</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2ContentTypeIsMultipart()'><b>api2ContentTypeIsMultipart</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api2 content-type is multipart/form-data</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1BaseUrlIsLoaded()'><b>api1BaseUrlIsLoaded</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api1.base.url is loaded and valid</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2BaseUrlIsLoaded()'><b>api2BaseUrlIsLoaded</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api2.base.url is loaded and valid</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1HeadersAreCorrect()'><b>api1HeadersAreCorrect</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: API1 headers: Content-Type, Accept always present; no Authorization invented</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1ContentTypeIsJson()'><b>api1ContentTypeIsJson</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api1 content-type is application/json</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.envNameConversionIsCorrect()'><b>envNameConversionIsCorrect</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: toEnvName converts dotted key correctly</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2EndpointIsLoaded()'><b>api2EndpointIsLoaded</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api2.endpoint is loaded and starts with /</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.envVarOverrideDerivationIsCorrect()'><b>envVarOverrideDerivationIsCorrect</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: Env-var override of auth property works: API2_AUTH_TOKEN overrides api2.auth.token</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2TimeoutsArePositive()'><b>api2TimeoutsArePositive</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api2 timeouts are positive integers</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2HeadersAreCorrect()'><b>api2HeadersAreCorrect</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: API2 headers: Accept + four app headers always present; no Content-Type</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.headersAreImmutable()'><b>headersAreImmutable</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: HeaderManager returns immutable maps</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1TimeoutsArePositive()'><b>api1TimeoutsArePositive</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: api1 timeouts are positive integers</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api1CookieMappedWhenConfigured()'><b>api1CookieMappedWhenConfigured</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: API1 Cookie header present when api1.cookie / API1_COOKIE is configured</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.authPropertiesAreReadableViaGet()'><b>authPropertiesAreReadableViaGet</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: All credential property keys are present in config and readable via get()</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.environmentNameIsSet()'><b>environmentNameIsSet</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: environment name is set and non-blank</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.api2CredentialHeadersMappedToCorrectNames()'><b>api2CredentialHeadersMappedToCorrectNames</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: API2 credential headers present when configured; absent when blank/unset — values never logged</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.config.ConfigReaderTest.retrySettingsAreValid()'><b>retrySettingsAreValid</b><br>Test class: com.vr.portfolioplanner.config.ConfigReaderTest<br>Test method: retry settings are valid non-negative integers</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.config.ConfigReaderTest@4c163e3</td></tr>
+</table><p>
+</body>
+</html>

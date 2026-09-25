@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite data-provider-thread-count="5" name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]]]]]" guice-stage="DEVELOPMENT" verbose="2">
+  <test thread-count="5" name="API Comparison Tests(failed)(failed)(failed)(failed)(failed)(failed)(failed)" verbose="2">
+    <groups>
+      <run>
+        <include name="api-comparison"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.vr.portfolioplanner.test.ApiComparisonTest">
+        <methods>
+          <include name="initReports"/>
+          <include name="generateReport"/>
+          <include name="comparePortfolioPlanner" invocation-numbers="5632 5633 5638 5639 5642 5644 5647 5648 5653 5654 5662 5663 5668 5669 5672 5678 5683 5684 5689 5693 5698 5702 5704 5707 5708 5713 5714 5717 5719 5722 5723 5728 5734 5738 5743 5744 5749 5753 5758 5252 5764 5254 5768 5257 5258 5773 5263 5264 5777 5267 5779 5269 5782 5783 5272 5273 5788 5789 5278 5792 5282 5794 5797 5798 5287 5288 5803 5804 5293 5294 5299 5813 5302 5303 5818 5308 5309 5822 5827 5828 5317 5318 5833 5323 5324 5837 5327 5329 5843 5332 5333 5848 5849 5338 5339 5852 5342 5854 5344 5857 5858 5347 5348 5863 5864 5353 5354 5867 5869 5359 5872 5873 5363 5878 5368 5882 5887 5888 5378 5893 5383 5387 5903 5392 5393 5908 5909 5398 5402 5914 5404 5918 5407 5408 5923 5413 5414 5927 5417 5929 5419 5932 5933 5422 5423 5938 5939 5428 5942 5944 5434 5947 5948 5438 5953 5954 5443 5447 5959 5449 5962 5963 5452 5453 5968 5969 5458 5464 5977 5978 5468 5983 5984 5473 5474 5477 5479 5992 5993 5482 5483 5998 5999 5488 5489 5492 5494 5497 5498 5503 5507 5513 5518 5519 5522 5524 5528 5533 5537 5543 5548 5552 5554 5557 5558 5563 5564 5567 5569 5572 5573 5578 5579 5584 5588 5593 5602 5603 5608 5612 5617 5618 5623 5624 5627 5629"/>
+        </methods>
+      </class> <!-- com.vr.portfolioplanner.test.ApiComparisonTest -->
+    </classes>
+  </test> <!-- API Comparison Tests(failed)(failed)(failed)(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]]]]] -->

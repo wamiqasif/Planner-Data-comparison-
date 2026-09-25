@@ -1,0 +1,521 @@
+<html>
+<head>
+<title>TestNG:  Payload Builder Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Payload Builder Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>22/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (48 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>payload </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsNull()'><b>api2BuilderRejectsNull</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 builder rejects null TestData</td>
+<td><div><pre>java.lang.IllegalArgumentException: TestData must not be null
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.validate(Api2FormDataPayloadBuilder.java:113)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.build(Api2FormDataPayloadBuilder.java:55)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsNull(PayloadBuilderTest.java:374)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1010311355", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1010311355'><pre>java.lang.IllegalArgumentException: TestData must not be null
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.validate(Api2FormDataPayloadBuilder.java:113)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.build(Api2FormDataPayloadBuilder.java:55)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsNull(PayloadBuilderTest.java:374)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1HasAwareTypeApi2DoesNot()'><b>api1HasAwareTypeApi2DoesNot</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 has aware_type; API-2 does not</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataApi2SpecificFieldsMatchTestData()'><b>api2FormDataApi2SpecificFieldsMatchTestData</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data uses api2_* Excel columns for label_id/user_id/investor_id/next_financial_year</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataContainsAllRequiredFields()'><b>api2FormDataContainsAllRequiredFields</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data contains every required field</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataIsImmutable()'><b>api2FormDataIsImmutable</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data map is unmodifiable</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2HasNextFinancialYearApi1DoesNot()'><b>api2HasNextFinancialYearApi1DoesNot</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 has next_financial_year; API-1 does not</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.apiSpecificIdsDifferBetweenApis()'><b>apiSpecificIdsDifferBetweenApis</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 and API-2 use different label_id, user_id, investor_id from their respective Excel columns</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataNumericValuesAreIntegerStrings()'><b>api2FormDataNumericValuesAreIntegerStrings</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data numeric values are integer strings, not floating-point</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonApi1SpecificFieldsMatchTestData()'><b>api1JsonApi1SpecificFieldsMatchTestData</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 JSON uses api1_* Excel columns for label_id/user_id/aware_type/investor_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonContainsAllRequiredFields()'><b>api1JsonContainsAllRequiredFields</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 JSON contains every required field</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonIsValidJson()'><b>api1JsonIsValidJson</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 builder produces valid JSON</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsBlankGoalType()'><b>api1BuilderRejectsBlankGoalType</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 builder rejects TestData with blank goal_type</td>
+<td><div><pre>java.lang.IllegalArgumentException: API-1 payload: required field &apos;goal_type&apos; is blank or null
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.requireNonBlank(Api1JsonPayloadBuilder.java:205)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:118)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsBlankGoalType(PayloadBuilderTest.java:383)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace859985937", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace859985937'><pre>java.lang.IllegalArgumentException: API-1 payload: required field &apos;goal_type&apos; is blank or null
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.requireNonBlank(Api1JsonPayloadBuilder.java:205)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:118)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsBlankGoalType(PayloadBuilderTest.java:383)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataCommonFieldsMatchTestData()'><b>api2FormDataCommonFieldsMatchTestData</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data common-field values match TestData</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonCommonFieldsMatchTestData()'><b>api1JsonCommonFieldsMatchTestData</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 JSON common-field values match TestData</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataDoesNotUseApi1Ids()'><b>api2FormDataDoesNotUseApi1Ids</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 form-data does NOT use api1_* IDs for label_id/user_id/investor_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2FormDataIsNotEmpty()'><b>api2FormDataIsNotEmpty</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 builder produces a non-empty field map</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonDoesNotUseApi2Ids()'><b>api1JsonDoesNotUseApi2Ids</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 JSON does NOT use api2_* IDs for label_id/user_id/investor_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsNull()'><b>api1BuilderRejectsNull</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 builder rejects null TestData</td>
+<td><div><pre>java.lang.IllegalArgumentException: TestData must not be null
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:115)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsNull(PayloadBuilderTest.java:367)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace240000757", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace240000757'><pre>java.lang.IllegalArgumentException: TestData must not be null
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:115)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsNull(PayloadBuilderTest.java:367)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsZeroInvestorId()'><b>api2BuilderRejectsZeroInvestorId</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-2 builder rejects TestData with zero api2_investor_id</td>
+<td><div><pre>java.lang.IllegalArgumentException: API-2 payload: field &apos;api2_investor_id&apos; must be &gt; 0, got: 0
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.requirePositive(Api2FormDataPayloadBuilder.java:150)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.validate(Api2FormDataPayloadBuilder.java:137)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.build(Api2FormDataPayloadBuilder.java:55)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsZeroInvestorId(PayloadBuilderTest.java:401)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1199894489", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1199894489'><pre>java.lang.IllegalArgumentException: API-2 payload: field &apos;api2_investor_id&apos; must be &gt; 0, got: 0
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.requirePositive(Api2FormDataPayloadBuilder.java:150)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.validate(Api2FormDataPayloadBuilder.java:137)
+	at com.vr.portfolioplanner.payload.Api2FormDataPayloadBuilder.build(Api2FormDataPayloadBuilder.java:55)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api2BuilderRejectsZeroInvestorId(PayloadBuilderTest.java:401)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsZeroLabelId()'><b>api1BuilderRejectsZeroLabelId</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 builder rejects TestData with zero label_id</td>
+<td><div><pre>java.lang.IllegalArgumentException: API-1 payload: field &apos;api1_label_id&apos; must be &gt; 0, got: 0
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.requirePositive(Api1JsonPayloadBuilder.java:212)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:135)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsZeroLabelId(PayloadBuilderTest.java:392)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1286771084", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1286771084'><pre>java.lang.IllegalArgumentException: API-1 payload: field &apos;api1_label_id&apos; must be &gt; 0, got: 0
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.requirePositive(Api1JsonPayloadBuilder.java:212)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.validate(Api1JsonPayloadBuilder.java:135)
+	at com.vr.portfolioplanner.payload.Api1JsonPayloadBuilder.build(Api1JsonPayloadBuilder.java:61)
+	at com.vr.portfolioplanner.payload.PayloadBuilderTest.api1BuilderRejectsZeroLabelId(PayloadBuilderTest.java:392)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+	at org.testng.TestNG.runSuites(TestNG.java:1114)
+	at org.testng.TestNG.run(TestNG.java:1082)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.commonFieldsAreIdenticalAcrossApis()'><b>commonFieldsAreIdenticalAcrossApis</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: Common fields are identical in both API payloads (same TestData row)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.payload.PayloadBuilderTest.api1JsonNumericValuesAreIntegers()'><b>api1JsonNumericValuesAreIntegers</b><br>Test class: com.vr.portfolioplanner.payload.PayloadBuilderTest<br>Test method: API-1 JSON numeric values are integers, not floating-point</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.payload.PayloadBuilderTest@1059754c</td></tr>
+</table><p>
+</body>
+</html>

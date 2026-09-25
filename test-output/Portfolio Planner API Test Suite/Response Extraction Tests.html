@@ -1,0 +1,250 @@
+<html>
+<head>
+<title>TestNG:  Response Extraction Tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Response Extraction Tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>34/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (63 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>extraction </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.getFundByPlanIdReturnsCorrectFund()'><b>getFundByPlanIdReturnsCorrectFund</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: getFundByPlanId returns correct fund</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2StatusExtracted()'><b>api2StatusExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 status is 'success'</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2FundCountIsCorrect()'><b>api2FundCountIsCorrect</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 extracts 4 fund entries (real sample)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2NotComparableFieldsDocumented()'><b>api2NotComparableFieldsDocumented</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 NOT_COMPARABLE list mentions message; inv_data[] is now COMPARABLE via FieldMapping.TRANSACTION_TYPE</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1LegsHaveNormalizedType()'><b>api1LegsHaveNormalizedType</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 legs carry both rawType and normalizedType</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2MessageIsNull()'><b>api2MessageIsNull</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 message is null (not present in API-2)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1ErrorResponseHandledGracefully()'><b>api1ErrorResponseHandledGracefully</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 error response: extraction succeeds, funds empty</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.messageIsNotComparableAcrossApis()'><b>messageIsNotComparableAcrossApis</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 has message; API-2 message is null — fields are NOT_COMPARABLE</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1FundCountIsCorrect()'><b>api1FundCountIsCorrect</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 extracts 3 fund entries</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1NotComparableFieldsDocumented()'><b>api1NotComparableFieldsDocumented</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 NOT_COMPARABLE list mentions legs[] and message</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2FundFieldsExtracted()'><b>api2FundFieldsExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 fund fields from real response</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2BreakdownFieldsExtracted()'><b>api2BreakdownFieldsExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 breakdown: Equity=75%, Debt=25%</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.nullBodyProducesFailedResponse()'><b>nullBodyProducesFailedResponse</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: Null body produces failed ExtractedResponse (no exception)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1ExtractionSucceeds()'><b>api1ExtractionSucceeds</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 extraction succeeds on valid response</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2AmountFromTxnData()'><b>api2AmountFromTxnData</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 amount comes from txn_data.amount</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1FundFieldsExtracted()'><b>api1FundFieldsExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 fund fields: planId, planName, categoryId, categoryFmt, amount</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1BreakdownCountIsCorrect()'><b>api1BreakdownCountIsCorrect</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 extracts 1 breakdown group (Debt=100%)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.breakdownsMatchAcrossApis()'><b>breakdownsMatchAcrossApis</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: Both APIs produce identical breakdown data for the same scenario</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.comparableFieldsMatchAcrossApis()'><b>comparableFieldsMatchAcrossApis</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: plan_id, categoryId, categoryFmt, and amount match across APIs for same fund; planName requires FundNameNormalizer (tested separately in NormalizerTest)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1StatusExtracted()'><b>api1StatusExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 status is 'success'</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1FundEntryContainsMappedLegs()'><b>api1FundEntryContainsMappedLegs</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 FundEntry contains legs[] mapped from legs[].type/type_fmt (now COMPARABLE)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1InvestorIdExtracted()'><b>api1InvestorIdExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 investor ID extracted from data.investor.investor_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1AmountFromFirstMonthAmount()'><b>api1AmountFromFirstMonthAmount</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 amount comes from first_month_amount field</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2BreakdownCountIsCorrect()'><b>api2BreakdownCountIsCorrect</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 extracts 2 breakdown groups (Equity + Debt)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2InvestorIdExtracted()'><b>api2InvestorIdExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 investor ID extracted from data.investor.investor_id</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.getBreakdownByCategoryIdReturnsEmptyForUnknown()'><b>getBreakdownByCategoryIdReturnsEmptyForUnknown</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: getBreakdownByCategoryId returns empty for unknown ID</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1BreakdownFieldsExtracted()'><b>api1BreakdownFieldsExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 breakdown: Debt=100%</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2ErrorResponseHandledGracefully()'><b>api2ErrorResponseHandledGracefully</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 error response: extraction succeeds, funds empty</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.technicalIdsExcludedFromFundEntry()'><b>technicalIdsExcludedFromFundEntry</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: Technical IDs (port_builder_id/output_id) are NOT in FundEntry</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.malformedJsonProducesFailedResponse()'><b>malformedJsonProducesFailedResponse</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: Malformed JSON produces failed ExtractedResponse (no exception)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.emptyBodyProducesFailedResponse()'><b>emptyBodyProducesFailedResponse</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: Empty body produces failed ExtractedResponse (no exception)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api1MessageExtracted()'><b>api1MessageExtracted</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-1 message is extracted</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.getFundByPlanIdReturnsEmptyForUnknown()'><b>getFundByPlanIdReturnsEmptyForUnknown</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: getFundByPlanId returns empty for unknown ID</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.response.ResponseExtractorTest.api2ExtractionSucceeds()'><b>api2ExtractionSucceeds</b><br>Test class: com.vr.portfolioplanner.response.ResponseExtractorTest<br>Test method: API-2 extraction succeeds on valid response</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.response.ResponseExtractorTest@7dcc91fd</td></tr>
+</table><p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Maven build output
+target/
+
+# ── Local credential overrides ────────────────────────────────────────────────
+# config-local.properties holds developer credentials (cookies, tokens, API keys).
+# It MUST NOT be committed to source control.
+config-local.properties
+src/main/resources/config-local.properties
+src/test/resources/config-local.properties
+
+# IDE metadata
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

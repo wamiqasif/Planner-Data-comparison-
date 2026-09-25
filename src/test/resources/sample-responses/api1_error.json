@@ -1,0 +1,9 @@
+{
+  "data": {
+    "investor": null,
+    "funds_data": { "data": [] },
+    "breakdown_funds_data": { "data": [] }
+  },
+  "message": "Unauthorized access",
+  "status": false
+}
