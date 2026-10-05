@@ -82,7 +82,8 @@ public class AlternateFundLiveReprocessTest {
         }
 
         AlternateFundAudit audit = AlternateFundValidator.evaluateAlternate(
-            testCaseId, api2Original, api1Alternate, opinion, opinionFetchError, details, api2Details);
+            testCaseId, api2Original, api1Alternate, opinion, opinionFetchError, details, api2Details,
+            AlternateFundValidator.PairingMethod.CATEGORY);
 
         log.info("Rule 1 (Opinion)          : {}", audit.getRule1());
         log.info("Rule 2 (Prohibited)       : {}", audit.getRule2());

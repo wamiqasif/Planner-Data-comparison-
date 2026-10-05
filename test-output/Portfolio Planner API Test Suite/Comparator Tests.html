@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Comparator Tests</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>25/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>50/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Sep 23 19:29:59 IST 2026</td>
+<td>Started on:</td><td>Mon Oct 05 10:20:43 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>0 seconds (35 ms)</td>
+<tr><td>Total time:</td><td>0 seconds (74 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td>compare </td>
 </tr><tr>
@@ -76,130 +76,255 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario09_dirGNormalization_passWithNote()'><b>scenario09_dirGNormalization_passWithNote</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 'Dir-G' in API-1 vs 'Direct-G' in API-2 → PASS, informational NORMALIZATION_DIFFERENCE</td>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.eightFunds_multipleSerialReplacements_interleavedOrder()'><b>eightFunds_multipleSerialReplacements_interleavedOrder</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: 8 funds: 6 exact matches + 2 serial-fallback replacements, with the orphans interleaved among the exact matches (not clustered at the end) to prove pairing follows ORIGINAL response order, never a re-sort</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule1_notInOpinionData_fail()'><b>alternateFund_rejectedByRule1_notInOpinionData_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate not present in fund-opinion-data (Rule 1 fails) → ALTERNATE_REJECTED, never MISSING_FIELD/EXTRA_FIELD</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.failedExtractionProducesError()'><b>failedExtractionProducesError</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Failed extraction produces API_EXECUTION_ERROR</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10a_amountWithinTolerance_pass()'><b>scenario10a_amountWithinTolerance_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference within tolerance → PASS</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10b_amountOutsideTolerance_fail()'><b>scenario10b_amountOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference outside tolerance → FAIL</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionTypeMismatch_missingOneTime()'><b>transactionTypeMismatch_missingOneTime</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 has SIP+ONE_TIME; API-2 has only SIP → MISSING_FIELD for ONE_TIME</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule4_goodNotPickLowStar_fail()'><b>alternateFund_rejectedByRule4_goodNotPickLowStar_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate is Good, not Analyst's Choice, 1-3 star (Rule 4 fails) → ALTERNATE_REJECTED</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario08_differentFundOrder_pass()'><b>scenario08_differentFundOrder_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same funds in different array order → PASS (matched by plan_id)</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
 <tr>
 <td title='com.vr.portfolioplanner.compare.ComparatorTest.normDifferenceDoesNotFail()'><b>normDifferenceDoesNotFail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: NORMALIZATION_DIFFERENCE does not increment failing count</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionAmountMismatch()'><b>transactionAmountMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same transaction types, SIP amounts differ → BUSINESS_VALUE_MISMATCH for SIP amount</td>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 10</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario03_extraFundInApi2_fail()'><b>scenario03_extraFundInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 has extra fund → COUNT_MISMATCH + EXTRA_FIELD</td>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioB_exactMatchesPlusOneAlternate()'><b>scenarioB_exactMatchesPlusOneAlternate</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario B: N-1 exact matches + exactly one valid category-based alternate<br>Parameters: 6</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_ambiguousPairing_multipleCandidatesShareCategory()'><b>alternateFund_ambiguousPairing_multipleCandidatesShareCategory</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 2 API-1 orphans share one category_name against 1 API-2 orphan → pairing cannot be uniquely resolved → PAIRING_AMBIGUOUS for all 3, never guessed</td>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10a_amountWithinTolerance_pass()'><b>scenario10a_amountWithinTolerance_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference within tolerance → PASS</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario07_multipleMismatches_allCollected()'><b>scenario07_multipleMismatches_allCollected</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Multiple field differences → all collected, single FAIL</td>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 5</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_multiplePairs_TC05264Shape()'><b>alternateFund_multiplePairs_TC05264Shape</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Real-world shape (TC_05264): 4 funds matched directly by plan_id, 3 funds paired as alternates by category_name — each independently evaluated; all report REQUIRED_DATA_NOT_AVAILABLE since Rules 2/3 have no reference data yet</td>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.unequalTotalCount_noFallback()'><b>unequalTotalCount_noFallback</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: Unequal total fund count (7 vs 6) — serial fallback must never engage even though category_name doesn't match either; genuine MISSING_FIELD/EXTRA_FIELD instead</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_fundDetailsFetchFailure_dataGap()'><b>alternateFund_fundDetailsFetchFailure_dataGap</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Fund Details fetch fails for an orphan → REQUIRED_DATA_NOT_AVAILABLE, never silently falls back to MISSING_FIELD/EXTRA_FIELD</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_cleanCandidate_reportsRequiredDataNotAvailable()'><b>alternateFund_cleanCandidate_reportsRequiredDataNotAvailable</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate passes Rules 1/4/5 but Rules 2/3 have no reference data configured yet → overall REQUIRED_DATA_NOT_AVAILABLE, never guessed PASS</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario02_fundMissingInApi2_fail()'><b>scenario02_fundMissingInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 missing a fund → COUNT_MISMATCH + MISSING_FIELD</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.responseStatusMismatch()'><b>responseStatusMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Status mismatch between responses → STATUS_MISMATCH</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario06_breakdownMismatch_fail()'><b>scenario06_breakdownMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Breakdown percentages differ beyond tolerance → BUSINESS_VALUE_MISMATCH</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario01_exactMatch_pass()'><b>scenario01_exactMatch_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Identical responses → PASS, zero mismatches</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
-<tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10d_percentageOutsideTolerance_fail()'><b>scenario10d_percentageOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Percentage difference outside tolerance → FAIL</td>
-<td></td>
-<td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
 <tr>
 <td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario04_amountMismatch_fail()'><b>scenario04_amountMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amounts differ beyond tolerance → BUSINESS_VALUE_MISMATCH</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioH_multipleCandidatesSameCategory_ambiguous()'><b>scenarioH_multipleCandidatesSameCategory_ambiguous</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario H: 2 API-1 candidates share one category_name against 1 API-2 original → PAIRING_AMBIGUOUS for all 3, none arbitrarily selected</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioJ_tc05264Shape()'><b>scenarioJ_tc05264Shape</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario J: TC_05264 shape — 5 exact matches (15752, 16151, 15866, 41574, 15829), category alternate 15800(Liquid)->16554(Liquid), and the remaining 38387(Equity Savings)/16897(Dynamic Asset Allocation) — no shared category, but totals and remaining counts line up, so serial fallback pairs them and runs business-rule validation rather than reporting MISSING/EXTRA outright</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 1</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10d_percentageOutsideTolerance_fail()'><b>scenario10d_percentageOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Percentage difference outside tolerance → FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario09_dirGNormalization_passWithNote()'><b>scenario09_dirGNormalization_passWithNote</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 'Dir-G' in API-1 vs 'Direct-G' in API-2 → PASS, informational NORMALIZATION_DIFFERENCE</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.fiveFunds_allExact_noFallback()'><b>fiveFunds_allExact_noFallback</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: 5 funds, all exact matches — serial fallback must not engage when there is nothing left unresolved</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10b_amountOutsideTolerance_fail()'><b>scenario10b_amountOutsideTolerance_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Amount difference outside tolerance → FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioB_exactMatchesPlusOneAlternate()'><b>scenarioB_exactMatchesPlusOneAlternate</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario B: N-1 exact matches + exactly one valid category-based alternate<br>Parameters: 7</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario07_multipleMismatches_allCollected()'><b>scenario07_multipleMismatches_allCollected</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Multiple field differences → all collected, single FAIL</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario06_breakdownMismatch_fail()'><b>scenario06_breakdownMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Breakdown percentages differ beyond tolerance → BUSINESS_VALUE_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_fundDetailsFetchFailure_dataGap()'><b>alternateFund_fundDetailsFetchFailure_dataGap</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Fund Details fetch fails for an orphan → REQUIRED_DATA_NOT_AVAILABLE, never silently falls back to MISSING_FIELD/EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.responseStatusMismatch()'><b>responseStatusMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Status mismatch between responses → STATUS_MISMATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 6</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.failedExtractionProducesError()'><b>failedExtractionProducesError</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Failed extraction produces API_EXECUTION_ERROR</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioI_exactPlusAlternatePlusGenuineAmountMismatch()'><b>scenarioI_exactPlusAlternatePlusGenuineAmountMismatch</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario I: exact match with a genuine amount mismatch coexists correctly with a valid alternate match elsewhere in the same response</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioF_equalTotalsButAsymmetricRemainder_mustNotFallBackToSerial()'><b>scenarioF_equalTotalsButAsymmetricRemainder_mustNotFallBackToSerial</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario F: equal TOTAL fund count (8=8) but an ambiguous category group consumes asymmetric counts (2 from API-1, 1 from API-2), leaving unequal remaining counts (1 vs 2) afterward — serial fallback must correctly refuse (equal totals alone are not sufficient; the still-unresolved counts must also be equal), so the leftover funds genuinely fall through to MISSING/EXTRA</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.sixFunds_oneSerialReplacement()'><b>sixFunds_oneSerialReplacement</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: 6 funds: 5 exact matches + 1 fund with no category_name match on either side, counts line up (1=1, totals 6=6) — serial fallback pairs it and runs business-rule validation</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
 <tr>
 <td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario05_categoryMismatch_fail()'><b>scenario05_categoryMismatch_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Different category_id → VALUE_MISMATCH</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.sevenFunds_oneSerialReplacement()'><b>sevenFunds_oneSerialReplacement</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: 7 funds: 6 exact matches + 1 serial-fallback replacement</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule4_goodNotPickLowStar_fail()'><b>alternateFund_rejectedByRule4_goodNotPickLowStar_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate is Good, not Analyst's Choice, 1-3 star (Rule 4 fails) → ALTERNATE_REJECTED</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.categoryPairingTakesPriorityOverSerialPosition()'><b>categoryPairingTakesPriorityOverSerialPosition</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: When a valid category_name pairing exists, it must be used instead of serial position — even when serial position would have paired different funds</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario01_exactMatch_pass()'><b>scenario01_exactMatch_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Identical responses → PASS, zero mismatches</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionAmountMismatch()'><b>transactionAmountMismatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same transaction types, SIP amounts differ → BUSINESS_VALUE_MISMATCH for SIP amount</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 2</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioC_multipleValidAlternates_tenFunds()'><b>scenarioC_multipleValidAlternates_tenFunds</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario C: 7 exact matches + 3 valid category-based alternates (N=10)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario08_differentFundOrder_pass()'><b>scenario08_differentFundOrder_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Same funds in different array order → PASS (matched by plan_id)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_cleanCandidate_resolvesToAlternateMatch()'><b>alternateFund_cleanCandidate_resolvesToAlternateMatch</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate passes all 5 rules — Rule 2's empty prohibited list means 'nothing prohibited' (PASS) and Rule 3 is NOT_APPLICABLE for a non-Index-Fund category, neither is a data gap → overall ALTERNATE_MATCH</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario03_extraFundInApi2_fail()'><b>scenario03_extraFundInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 has extra fund → COUNT_MISMATCH + EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 15</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.SerialFallbackMatchingTest.equalTotalCount_withReplacements()'><b>equalTotalCount_withReplacements</b><br>Test class: com.vr.portfolioplanner.compare.SerialFallbackMatchingTest<br>Test method: Equal total fund count (10=10) with 3 serial replacements — all pair correctly by position</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.SerialFallbackMatchingTest@27abb83e</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioD_sameCategoryDifferentPlanId_mustPair()'><b>scenarioD_sameCategoryDifferentPlanId_mustPair</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario D: same category_name but wildly different plan_id must still pair (category_name is the only pairing key, plan_id value/shape is irrelevant)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioE_differentCategoryUnequalTotals_mustNotPair()'><b>scenarioE_differentCategoryUnequalTotals_mustNotPair</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario E: different category_name AND unequal total fund count must NOT be paired at all — not by category (no shared category_name) and not by the serial fallback (counts don't line up, so it's not eligible)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.transactionTypeMismatch_missingOneTime()'><b>transactionTypeMismatch_missingOneTime</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 has SIP+ONE_TIME; API-2 has only SIP → MISSING_FIELD for ONE_TIME</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_noCategoryMatch_unequalTotals_stillMissingAndExtra()'><b>alternateFund_noCategoryMatch_unequalTotals_stillMissingAndExtra</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: No category_name match on either side AND total fund counts differ → serial fallback is not eligible (counts don't line up); funds genuinely fall through to MISSING_FIELD/EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
 <tr>
 <td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario10c_percentageWithinTolerance_pass()'><b>scenario10c_percentageWithinTolerance_pass</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Percentage difference within tolerance → PASS</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
 <tr>
-<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_noCategoryMatchOnOtherSide_stillMissingAndExtra()'><b>alternateFund_noCategoryMatchOnOtherSide_stillMissingAndExtra</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 orphan's category_name matches nothing on the API-2 side → genuine absence, falls through to MISSING_FIELD/EXTRA_FIELD unchanged</td>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioA_allExactMatches_scalesPastFive()'><b>scenarioA_allExactMatches_scalesPastFive</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario A: N identical funds matched purely by plan_id, N in {1,2,5,6,7,10,15}<br>Parameters: 7</td>
 <td></td>
 <td>0</td>
-<td>com.vr.portfolioplanner.compare.ComparatorTest@497570fb</td></tr>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_multiplePairs_TC05264Shape()'><b>alternateFund_multiplePairs_TC05264Shape</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: Real-world shape (TC_05264): 4 funds matched directly by plan_id, 3 funds paired as alternates by category_name — each independently evaluated; all resolve ALTERNATE_MATCH (none is a prohibited or Index Fund category, so Rules 2/3 PASS/NOT_APPLICABLE rather than gapping)</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_rejectedByRule1_notInOpinionData_fail()'><b>alternateFund_rejectedByRule1_notInOpinionData_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 alternate not present in fund-opinion-data (Rule 1 fails) → ALTERNATE_REJECTED, never MISSING_FIELD/EXTRA_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.scenario02_fundMissingInApi2_fail()'><b>scenario02_fundMissingInApi2_fail</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-2 missing a fund → COUNT_MISMATCH + MISSING_FIELD</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_ambiguousPairing_multipleCandidatesShareCategory()'><b>alternateFund_ambiguousPairing_multipleCandidatesShareCategory</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: 2 API-1 orphans share one category_name against 1 API-2 orphan → pairing cannot be uniquely resolved → PAIRING_AMBIGUOUS for all 3, never guessed</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.FundMatchingScaleTest.scenarioG_differentFundCount()'><b>scenarioG_differentFundCount</b><br>Test class: com.vr.portfolioplanner.compare.FundMatchingScaleTest<br>Test method: Scenario G: different fund count → COUNT_MISMATCH, matching still proceeds for the rest</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.FundMatchingScaleTest@45673f68</td></tr>
+<tr>
+<td title='com.vr.portfolioplanner.compare.ComparatorTest.alternateFund_noCategoryMatch_fallsBackToSerialPairing()'><b>alternateFund_noCategoryMatch_fallsBackToSerialPairing</b><br>Test class: com.vr.portfolioplanner.compare.ComparatorTest<br>Test method: API-1 orphan's category_name matches nothing on the API-2 side → genuine absence, falls through to MISSING_FIELD/EXTRA_FIELD unchanged</td>
+<td></td>
+<td>0</td>
+<td>com.vr.portfolioplanner.compare.ComparatorTest@51745f40</td></tr>
 </table><p>
 </body>
 </html>

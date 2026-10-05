@@ -193,11 +193,26 @@ public class ApiComparisonTest {
                 testCaseId, api1Response, api2Response, norm1, norm2);
 
             // ── Compute fund stats ────────────────────────────────────────────
+            // "Missing"/"Extra" must reflect the FINAL outcome after alternate-fund
+            // pairing (see AlternateFundValidator), not a raw plan_id set difference —
+            // a fund left unmatched by plan_id but accepted as an ALTERNATE_MATCH is
+            // neither missing nor extra. Read the authoritative, post-alternate-
+            // resolution MISSING_FIELD/EXTRA_FIELD mismatches ResponseComparator
+            // already produced rather than recomputing an independent, divergent
+            // set difference here (which double-counts every alternate-matched pair).
             Set<String> ids1 = fundPlanIds(norm1);
             Set<String> ids2 = fundPlanIds(norm2);
-            int matchedFunds = (int) ids1.stream().filter(ids2::contains).count();
-            int missingFunds = (int) ids1.stream().filter(id -> !ids2.contains(id)).count();
-            int extraFunds   = (int) ids2.stream().filter(id -> !ids1.contains(id)).count();
+            int directMatchedFunds = (int) ids1.stream().filter(ids2::contains).count();
+            int alternateMatchedFunds = (int) compResult.getAlternateFundAudits().stream()
+                .filter(a -> a.getMatchType().isAcceptedMatch())
+                .count();
+            int matchedFunds = directMatchedFunds + alternateMatchedFunds;
+            int missingFunds = (int) compResult.getByType(MismatchType.MISSING_FIELD).stream()
+                .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
+                .count();
+            int extraFunds   = (int) compResult.getByType(MismatchType.EXTRA_FIELD).stream()
+                .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
+                .count();
 
             // ── Build result record ───────────────────────────────────────────
             rb.executionStatus(compResult.isPassed() ? "PASS" : "FAIL")

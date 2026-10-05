@@ -96,6 +96,8 @@
         </groups>
         <classes>
             <class name="com.vr.portfolioplanner.compare.ComparatorTest"/>
+            <class name="com.vr.portfolioplanner.compare.FundMatchingScaleTest"/>
+            <class name="com.vr.portfolioplanner.compare.SerialFallbackMatchingTest"/>
         </classes>
     </test>
 

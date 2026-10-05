@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite data-provider-thread-count="5" name="Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]]" guice-stage="DEVELOPMENT" verbose="2">
-  <test thread-count="5" name="API Comparison Tests(failed)(failed)(failed)(failed)" verbose="2">
+<suite data-provider-thread-count="5" name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]]]]" guice-stage="DEVELOPMENT" verbose="2">
+  <test thread-count="5" name="API Comparison Tests(failed)(failed)(failed)(failed)(failed)(failed)" verbose="2">
     <groups>
       <run>
         <include name="api-comparison"/>
@@ -16,5 +16,5 @@
         </methods>
       </class> <!-- com.vr.portfolioplanner.test.ApiComparisonTest -->
     </classes>
-  </test> <!-- API Comparison Tests(failed)(failed)(failed)(failed) -->
-</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]] -->
+  </test> <!-- API Comparison Tests(failed)(failed)(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Portfolio Planner API Test Suite]]]]]] -->

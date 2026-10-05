@@ -681,7 +681,7 @@ public class ComparatorTest {
     @Test(groups = "compare",
           description = "API-1 orphan's category_name matches nothing on the API-2 side → genuine "
                        + "absence, falls through to MISSING_FIELD/EXTRA_FIELD unchanged")
-    public void alternateFund_noCategoryMatchOnOtherSide_stillMissingAndExtra() {
+    public void alternateFund_noCategoryMatch_fallsBackToSerialPairing() {
         ExtractedResponse r1 = response("API-1", "success",
             List.of(fund("P1", "Alpha Fund Direct-G", "LC001", "Large Cap", bd(20000))),
             List.of());
@@ -692,6 +692,45 @@ public class ComparatorTest {
         FundDetailsClient.primeForTest(Map.of(
             "P1", FundDetailsSnapshot.found("P1", "Large Cap"),
             "P9", FundDetailsSnapshot.found("P9", "Mid Cap")));
+        FundOpinionClient.primeForTest(Map.of(
+            "P1", FundOpinionSnapshot.found("P1", 1, false, 4, null)));
+        try {
+            ComparisonResult result = ResponseComparator.compare(TC, r1, r2);
+
+            Assert.assertTrue(result.getByType(MismatchType.MISSING_FIELD).isEmpty(),
+                "serial fallback must consume both orphans before MISSING_FIELD is ever considered");
+            Assert.assertTrue(result.getByType(MismatchType.EXTRA_FIELD).isEmpty(),
+                "serial fallback must consume both orphans before EXTRA_FIELD is ever considered");
+            Assert.assertEquals(result.getAlternateFundAudits().size(), 1);
+            AlternateFundAudit audit = result.getAlternateFundAudits().get(0);
+            Assert.assertEquals(audit.getMatchType(), MatchType.SERIAL_ALTERNATE_MATCH);
+            Assert.assertEquals(audit.getApi1PlanId(), "P1");
+            Assert.assertEquals(audit.getApi2PlanId(), "P9");
+            log.info("Alternate fund (no category match, serial fallback): {}", result);
+        } finally {
+            FundOpinionClient.resetForTest();
+            FundDetailsClient.resetForTest();
+        }
+    }
+
+    @Test(groups = "compare",
+          description = "No category_name match on either side AND total fund counts differ → serial "
+                       + "fallback is not eligible (counts don't line up); funds genuinely fall through "
+                       + "to MISSING_FIELD/EXTRA_FIELD")
+    public void alternateFund_noCategoryMatch_unequalTotals_stillMissingAndExtra() {
+        ExtractedResponse r1 = response("API-1", "success",
+            List.of(
+                fund("P1", "Alpha Fund Direct-G", "LC001", "Large Cap", bd(20000)),
+                fund("P2", "Gamma Fund Direct-G", "SC001", "Small Cap", bd(9000))),
+            List.of());
+        ExtractedResponse r2 = response("API-2", "success",
+            List.of(fund("P9", "Beta Fund Direct-G", "MC001", "Mid Cap", bd(20000))),
+            List.of());
+
+        FundDetailsClient.primeForTest(Map.of(
+            "P1", FundDetailsSnapshot.found("P1", "Large Cap"),
+            "P2", FundDetailsSnapshot.found("P2", "Small Cap"),
+            "P9", FundDetailsSnapshot.found("P9", "Mid Cap")));
         try {
             ComparisonResult result = ResponseComparator.compare(TC, r1, r2);
 
@@ -699,8 +738,8 @@ public class ComparatorTest {
             Assert.assertFalse(result.getByType(MismatchType.MISSING_FIELD).isEmpty());
             Assert.assertFalse(result.getByType(MismatchType.EXTRA_FIELD).isEmpty());
             Assert.assertTrue(result.getAlternateFundAudits().isEmpty(),
-                "No pairing candidate exists on the other side — a real absence, not an alternate scenario");
-            log.info("Alternate fund (no category match, still missing/extra): {}", result);
+                "unequal total counts disqualify serial fallback; no category candidate exists either");
+            log.info("Alternate fund (no category match, unequal totals): {}", result);
         } finally {
             FundDetailsClient.resetForTest();
         }
