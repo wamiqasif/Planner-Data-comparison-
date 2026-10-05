@@ -22,16 +22,26 @@ import java.util.stream.Collectors;
  * original/reference fund; API-1 is the alternate candidate. Rules are
  * evaluated <b>only</b> against the API-1 side.
  *
- * <h3>Pairing (deterministic, category_name-based)</h3>
+ * <h3>Pairing (deterministic, category_name-based, with a narrow serial fallback)</h3>
  * Orphans on both sides are grouped by {@code category_name} (fetched live via
  * {@link FundDetailsClient}). A category shared by exactly one orphan on each
- * side is a unique pair. A category shared by more than one orphan on either
- * side cannot be uniquely resolved — every fund in that group is reported
- * {@link MatchType#PAIRING_AMBIGUOUS}, never guessed. A fetch failure for an
- * orphan's own details makes it {@link MatchType#REQUIRED_DATA_NOT_AVAILABLE}
- * directly. Orphans whose category matches nothing on the other side fall
- * through to the caller's existing MISSING_FIELD/EXTRA_FIELD handling — a real
- * absence, not a substitution.
+ * side is a unique pair ({@link MatchType#ALTERNATE_MATCH}/{@link MatchType#ALTERNATE_REJECTED}).
+ * A category shared by more than one orphan on either side cannot be uniquely
+ * resolved — every fund in that group is reported {@link MatchType#PAIRING_AMBIGUOUS},
+ * never guessed. A fetch failure for an orphan's own details makes it
+ * {@link MatchType#REQUIRED_DATA_NOT_AVAILABLE} directly.
+ *
+ * <p>Orphans that category-matching could not resolve at all (no shared
+ * {@code category_name} on the other side — <em>not</em> the ambiguous case,
+ * which is already resolved above) fall to a narrow, explicit serial/order
+ * fallback: when, and only when, API-1's total fund count equals API-2's total
+ * fund count AND the still-unresolved counts on both sides are equal, they are
+ * paired strictly by original response order/position (never re-sorted) —
+ * {@link MatchType#SERIAL_ALTERNATE_MATCH}/{@link MatchType#SERIAL_ALTERNATE_REJECTED}.
+ * Category-name pairing is always tried first and always takes priority; serial
+ * pairing only ever consumes what category-name pairing left genuinely
+ * unresolved. Whatever remains after both falls through to the caller's
+ * existing MISSING_FIELD/EXTRA_FIELD handling — a real absence, not a substitution.
  *
  * <h3>The 5 rules</h3>
  * See {@link FundClassificationRules} for the (currently empty, extensible)
@@ -56,6 +66,12 @@ public final class AlternateFundValidator {
     // Public entry point
     // -------------------------------------------------------------------------
 
+    /** Whether a pending pair was formed by category_name matching or the serial fallback. */
+    enum PairingMethod { CATEGORY, SERIAL }
+
+    /** One pending API-2-original/API-1-alternate pair awaiting business-rule validation. */
+    private record PendingPair(String api2PlanId, String api1PlanId, PairingMethod method) {}
+
     /**
      * Pairs and validates every fund left unmatched by {@code plan_id} after
      * direct matching. {@code unmatched1}/{@code unmatched2} are consumed
@@ -63,15 +79,28 @@ public final class AlternateFundValidator {
      * {@link PairingOutcome#getConsumedApi1()}/{@link PairingOutcome#getConsumedApi2()}
      * so the caller can remove them before falling back to its own
      * MISSING_FIELD/EXTRA_FIELD handling for whatever remains.
+     *
+     * @param totalApi1Count API-1's total fund count for the row (all funds, not just orphans) —
+     *                       used only to gate serial-fallback eligibility
+     * @param totalApi2Count API-2's total fund count for the row — used only to gate serial-fallback eligibility
+     * @param serial1        1-based original response position of every API-1 plan_id, for logging only
+     * @param serial2        1-based original response position of every API-2 plan_id, for logging only
      */
     public static PairingOutcome pairAndValidate(
             String testCaseId,
             Map<String, FundEntry> unmatched1,
             Map<String, FundEntry> unmatched2,
-            BigDecimal amountTolerance) {
+            BigDecimal amountTolerance,
+            int totalApi1Count,
+            int totalApi2Count,
+            Map<String, Integer> serial1,
+            Map<String, Integer> serial2) {
 
         PairingOutcome outcome = new PairingOutcome();
         if (unmatched1.isEmpty() || unmatched2.isEmpty()) return outcome;
+
+        log.info("[{}] ALTERNATE CANDIDATE SEARCH START — api1Orphans={} api2Orphans={}",
+            testCaseId, unmatched1.keySet(), unmatched2.keySet());
 
         // 1. Fund Details for every orphan on both sides; a fetch failure is a direct data gap.
         Map<String, FundDetailsSnapshot> details1 = new LinkedHashMap<>();
@@ -86,20 +115,26 @@ public final class AlternateFundValidator {
         Set<String> sharedCategories = new LinkedHashSet<>(byCategory1.keySet());
         sharedCategories.retainAll(byCategory2.keySet());
 
-        List<String[]> uniquePairs = new ArrayList<>(); // [api2PlanId, api1PlanId]
+        List<PendingPair> uniquePairs = new ArrayList<>();
 
         for (String category : sharedCategories) {
             List<String> list1 = byCategory1.get(category);
             List<String> list2 = byCategory2.get(category);
 
             if (list1.size() == 1 && list2.size() == 1) {
-                uniquePairs.add(new String[] { list2.get(0), list1.get(0) });
+                uniquePairs.add(new PendingPair(list2.get(0), list1.get(0), PairingMethod.CATEGORY));
                 outcome.consumedApi1.add(list1.get(0));
                 outcome.consumedApi2.add(list2.get(0));
+                log.info("[{}] ALTERNATE PAIRING DECISION — category_name='{}': API-2 original={} "
+                        + "<-> API-1 alternate={} (unique candidate on both sides, method=CATEGORY)",
+                    testCaseId, category, list2.get(0), list1.get(0));
             } else {
                 String reason = String.format(
                     "%d candidate(s) on API-1 side / %d candidate(s) on API-2 side share category_name '%s'",
                     list1.size(), list2.size(), category);
+                log.info("[{}] ALTERNATE PAIRING DECISION — category_name='{}': PAIRING_AMBIGUOUS — "
+                        + "api1Candidates={} api2Candidates={} (not consumed until resolved)",
+                    testCaseId, category, list1, list2);
                 for (String planId : list1) {
                     emitAmbiguous(testCaseId, outcome, unmatched1.get(planId), category, reason, true);
                     outcome.consumedApi1.add(planId);
@@ -109,6 +144,45 @@ public final class AlternateFundValidator {
                     outcome.consumedApi2.add(planId);
                 }
             }
+        }
+
+        // 2b. Serial/order fallback — ONLY for orphans category-matching could not resolve at
+        // all (no shared category_name on the other side; the ambiguous case above is already
+        // resolved and excluded). Fires only when API-1's total fund count equals API-2's total
+        // fund count AND the still-unresolved counts on both sides are equal. Pairs strictly by
+        // original response order (the natural iteration order of unmatched1/unmatched2, which
+        // are never re-sorted anywhere in this pipeline) — never by plan_id or category_name.
+        List<String> remaining1 = unmatched1.keySet().stream()
+            .filter(id -> !outcome.consumedApi1.contains(id)).collect(Collectors.toList());
+        List<String> remaining2 = unmatched2.keySet().stream()
+            .filter(id -> !outcome.consumedApi2.contains(id)).collect(Collectors.toList());
+
+        if (!remaining1.isEmpty() && !remaining2.isEmpty()
+                && totalApi1Count == totalApi2Count
+                && remaining1.size() == remaining2.size()) {
+            log.info("[{}] SERIAL FALLBACK ELIGIBLE — {} fund(s) per side left unresolved by "
+                    + "category_name; api1Total={} api2Total={} (equal) and remaining counts equal "
+                    + "— pairing strictly by original response order",
+                testCaseId, remaining1.size(), totalApi1Count, totalApi2Count);
+            for (int i = 0; i < remaining1.size(); i++) {
+                String api1PlanId = remaining1.get(i);
+                String api2PlanId = remaining2.get(i);
+                uniquePairs.add(new PendingPair(api2PlanId, api1PlanId, PairingMethod.SERIAL));
+                outcome.consumedApi1.add(api1PlanId);
+                outcome.consumedApi2.add(api2PlanId);
+                FundEntry f1 = unmatched1.get(api1PlanId);
+                FundEntry f2 = unmatched2.get(api2PlanId);
+                log.info("[{}] SERIAL PAIRING DECISION — API-1 original serial={} plan_id={} "
+                        + "fund_name='{}' <-> API-2 original serial={} plan_id={} fund_name='{}' "
+                        + "— pairing method=SERIAL",
+                    testCaseId, serial1.get(api1PlanId), api1PlanId, f1.getPlanName(),
+                    serial2.get(api2PlanId), api2PlanId, f2.getPlanName());
+            }
+        } else if (!remaining1.isEmpty() || !remaining2.isEmpty()) {
+            log.info("[{}] SERIAL FALLBACK NOT ELIGIBLE — api1Remaining={} api2Remaining={} "
+                    + "api1Total={} api2Total={} (counts must all line up for fallback pairing; "
+                    + "these fall through to MISSING_FIELD/EXTRA_FIELD)",
+                testCaseId, remaining1, remaining2, totalApi1Count, totalApi2Count);
         }
 
         // If a Fund Details fetch failed for any orphan on either side, no remaining unconsumed
@@ -132,7 +206,7 @@ public final class AlternateFundValidator {
         if (uniquePairs.isEmpty()) return outcome;
 
         // 3. One batched Fund Opinion fetch for all API-1 alternates in the confirmed pairs.
-        List<String> api1PlanIds = uniquePairs.stream().map(p -> p[1]).collect(Collectors.toList());
+        List<String> api1PlanIds = uniquePairs.stream().map(PendingPair::api1PlanId).collect(Collectors.toList());
         Map<String, FundOpinionSnapshot> opinions;
         String opinionFetchError = null;
         try {
@@ -144,9 +218,9 @@ public final class AlternateFundValidator {
                 api1PlanIds.size(), e.getMessage());
         }
 
-        for (String[] pair : uniquePairs) {
-            String api2PlanId = pair[0];
-            String api1PlanId = pair[1];
+        for (PendingPair pair : uniquePairs) {
+            String api2PlanId = pair.api2PlanId();
+            String api1PlanId = pair.api1PlanId();
             FundEntry api2Fund = unmatched2.get(api2PlanId);
             FundEntry api1Fund = unmatched1.get(api1PlanId);
             FundOpinionSnapshot opinion = opinions.getOrDefault(api1PlanId, FundOpinionSnapshot.notFound(api1PlanId));
@@ -154,8 +228,13 @@ public final class AlternateFundValidator {
             FundDetailsSnapshot api2Details = details2.get(api2PlanId);
 
             AlternateFundAudit audit = evaluateAlternate(
-                testCaseId, api2Fund, api1Fund, opinion, opinionFetchError, details, api2Details);
+                testCaseId, api2Fund, api1Fund, opinion, opinionFetchError, details, api2Details, pair.method());
             outcome.audits.add(audit);
+            log.info("[{}] ALTERNATE BUSINESS-RULE VALIDATION — pairingMethod={} api2Original={} "
+                    + "api1Alternate={} matchType={} rule1={} rule2={} rule3={} rule4={} rule5={} finalResult={}",
+                testCaseId, pair.method(), api2PlanId, api1PlanId, audit.getMatchType(),
+                audit.getRule1().getOutcome(), audit.getRule2().getOutcome(), audit.getRule3().getOutcome(),
+                audit.getRule4().getOutcome(), audit.getRule5().getOutcome(), audit.getFinalResult());
             emitMismatchForAudit(testCaseId, outcome, audit, api2Fund, api1Fund, amountTolerance);
         }
 
@@ -170,7 +249,7 @@ public final class AlternateFundValidator {
     static AlternateFundAudit evaluateAlternate(
             String testCaseId, FundEntry api2Original, FundEntry api1Alternate,
             FundOpinionSnapshot opinion, String opinionFetchError, FundDetailsSnapshot details,
-            FundDetailsSnapshot api2Details) {
+            FundDetailsSnapshot api2Details, PairingMethod pairingMethod) {
 
         RuleResult r1 = evaluateRule1(opinion, opinionFetchError);
         RuleResult r2 = evaluateRule2(details);
@@ -183,17 +262,18 @@ public final class AlternateFundValidator {
 
         boolean anyFail = rules.stream().anyMatch(r -> r.getOutcome() == RuleOutcome.FAIL);
         boolean anyGap  = rules.stream().anyMatch(r -> r.getOutcome() == RuleOutcome.REQUIRED_DATA_NOT_AVAILABLE);
+        boolean serial  = pairingMethod == PairingMethod.SERIAL;
 
         MatchType matchType;
         String finalResult;
         if (anyFail) {
-            matchType = MatchType.ALTERNATE_REJECTED;
+            matchType = serial ? MatchType.SERIAL_ALTERNATE_REJECTED : MatchType.ALTERNATE_REJECTED;
             finalResult = "FAIL";
         } else if (anyGap) {
             matchType = MatchType.REQUIRED_DATA_NOT_AVAILABLE;
             finalResult = "REQUIRED_DATA_NOT_AVAILABLE";
         } else {
-            matchType = MatchType.ALTERNATE_MATCH;
+            matchType = serial ? MatchType.SERIAL_ALTERNATE_MATCH : MatchType.ALTERNATE_MATCH;
             finalResult = "PASS";
         }
 
@@ -452,6 +532,19 @@ public final class AlternateFundValidator {
                 outcome.mismatches.addAll(
                     FundComparator.compareAmountAndLegs(testCaseId, api1Fund, api2Fund, amountTolerance));
             }
+            case SERIAL_ALTERNATE_MATCH -> {
+                outcome.mismatches.add(Mismatch.builder(testCaseId, MismatchType.ALTERNATE_FUND_MATCH)
+                    .fieldPath("funds_data.data[plan_id=" + api1PlanId + "]")
+                    .api1Value(api1PlanId).api2Value(api2PlanId)
+                    .planId(api1PlanId).api1FundName(api1Fund.getPlanName()).api2FundName(api2Fund.getPlanName())
+                    .message("API-1 alternate plan_id='" + api1PlanId + "' accepted as a valid substitute for "
+                        + "API-2 original plan_id='" + api2PlanId + "' (paired by original response "
+                        + "order/serial position — category_name did not match on either side); "
+                        + "all applicable business rules passed")
+                    .build());
+                outcome.mismatches.addAll(
+                    FundComparator.compareAmountAndLegs(testCaseId, api1Fund, api2Fund, amountTolerance));
+            }
             case ALTERNATE_REJECTED -> outcome.mismatches.add(
                 Mismatch.builder(testCaseId, MismatchType.ALTERNATE_FUND_REJECTED)
                     .fieldPath("funds_data.data[plan_id=" + api1PlanId + "]")
@@ -459,6 +552,15 @@ public final class AlternateFundValidator {
                     .planId(api1PlanId).api1FundName(api1Fund.getPlanName()).api2FundName(api2Fund.getPlanName())
                     .message("API-1 alternate plan_id='" + api1PlanId + "' rejected as a substitute for API-2 "
                         + "original plan_id='" + api2PlanId + "': " + audit.getFailedCondition())
+                    .build());
+            case SERIAL_ALTERNATE_REJECTED -> outcome.mismatches.add(
+                Mismatch.builder(testCaseId, MismatchType.ALTERNATE_FUND_REJECTED)
+                    .fieldPath("funds_data.data[plan_id=" + api1PlanId + "]")
+                    .api1Value(api1PlanId).api2Value(api2PlanId)
+                    .planId(api1PlanId).api1FundName(api1Fund.getPlanName()).api2FundName(api2Fund.getPlanName())
+                    .message("API-1 alternate plan_id='" + api1PlanId + "' rejected as a substitute for API-2 "
+                        + "original plan_id='" + api2PlanId + "' (paired by original response order/serial "
+                        + "position): " + audit.getFailedCondition())
                     .build());
             case REQUIRED_DATA_NOT_AVAILABLE -> outcome.mismatches.add(
                 Mismatch.builder(testCaseId, MismatchType.ALTERNATE_FUND_DATA_UNAVAILABLE)

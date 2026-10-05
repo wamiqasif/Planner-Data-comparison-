@@ -175,7 +175,11 @@ public final class ResponseComparator {
         List<FundEntry> funds1 = ext1.getFunds();
         List<FundEntry> funds2 = ext2.getFunds();
 
-        // Step 3 — fund count
+        log.info("[{}] FUND MATCHING START — API-1 total count={} API-2 total count={}",
+            testCaseId, funds1.size(), funds2.size());
+
+        // Step 3 — fund count. Equal counts are NOT treated as PASS on their own —
+        // matching below still runs in full regardless of this outcome.
         if (funds1.size() != funds2.size()) {
             mismatches.add(Mismatch.builder(testCaseId, MismatchType.COUNT_MISMATCH)
                 .fieldPath("funds_data.data.count")
@@ -185,7 +189,10 @@ public final class ResponseComparator {
                 .build());
         }
 
-        // Step 4 — match by plan_id (no array-order dependency)
+        // Step 4 — match by plan_id (Map/Set keyed by plan_id only — no array-order
+        // or index dependency). map1/map2 and unmatched1/unmatched2 are freshly built
+        // local collections; the original funds1/funds2 lists from ext1/ext2 are never
+        // mutated.
         Map<String, FundEntry> map1 = fundsByPlanId(funds1);
         Map<String, FundEntry> map2 = fundsByPlanId(funds2);
 
@@ -194,22 +201,35 @@ public final class ResponseComparator {
         Set<String> unmatched2 = new LinkedHashSet<>();
         for (String planId : map2.keySet()) if (!map1.containsKey(planId)) unmatched2.add(planId);
 
+        int exactMatchedCount = map1.size() - unmatched1.size();
+        log.info("[{}] EXACT plan_id MATCH — exactMatchedCount={} api1UnmatchedCount={} "
+                + "api2UnmatchedCount={} api1UnmatchedPlanIds={} api2UnmatchedPlanIds={}",
+            testCaseId, exactMatchedCount, unmatched1.size(), unmatched2.size(), unmatched1, unmatched2);
+
         // Step 4b — funds still unmatched by plan_id are paired with the other side by
         // category_name and validated as alternate candidates (API-2 = original,
         // API-1 = alternate) against 5 business rules. See AlternateFundValidator.
         if (!unmatched1.isEmpty() && !unmatched2.isEmpty()) {
+            log.info("[{}] ALTERNATE CANDIDATE SEARCH — {} API-1 orphan(s) vs {} API-2 orphan(s), "
+                    + "pairing by category_name",
+                testCaseId, unmatched1.size(), unmatched2.size());
+
             Map<String, FundEntry> orphans1 = new LinkedHashMap<>();
             for (String planId : unmatched1) orphans1.put(planId, map1.get(planId));
             Map<String, FundEntry> orphans2 = new LinkedHashMap<>();
             for (String planId : unmatched2) orphans2.put(planId, map2.get(planId));
 
             AlternateFundValidator.PairingOutcome pairing =
-                AlternateFundValidator.pairAndValidate(testCaseId, orphans1, orphans2, tolerance);
+                AlternateFundValidator.pairAndValidate(testCaseId, orphans1, orphans2, tolerance,
+                    funds1.size(), funds2.size(), serialIndex(funds1), serialIndex(funds2));
 
             mismatches.addAll(pairing.getMismatches());
             alternateFundAudits.addAll(pairing.getAudits());
             unmatched1.removeAll(pairing.getConsumedApi1());
             unmatched2.removeAll(pairing.getConsumedApi2());
+
+            log.info("[{}] ALTERNATE PAIRING DECISION — {} audit row(s): {}",
+                testCaseId, pairing.getAudits().size(), pairing.getAudits());
         }
 
         for (String planId : unmatched1) {
@@ -239,6 +259,31 @@ public final class ResponseComparator {
                 mismatches.addAll(FundComparator.compare(testCaseId, e.getValue(), f2, tolerance));
             }
         }
+
+        long alternateMatchedCount = alternateFundAudits.stream()
+            .filter(a -> a.getMatchType().isAcceptedMatch())
+            .count();
+        long finalMatchedCount = exactMatchedCount + alternateMatchedCount;
+        long finalFundMismatchCount = unmatched1.size() + unmatched2.size();
+
+        // Final accounting invariant (never silently PASS on a broken count):
+        // total API-1 funds = exact matches + alternate matches + rejected/ambiguous/data-gap/unmatched API-1 orphans
+        // total API-2 funds = exact matches + alternate matches + rejected/ambiguous/data-gap/unmatched/missing API-2 orphans
+        if (map1.size() != funds1.size()) {
+            log.warn("[{}] DUPLICATE plan_id DETECTED in API-1 response — {} raw fund record(s) but only "
+                    + "{} distinct plan_id(s); a duplicate was silently collapsed",
+                testCaseId, funds1.size(), map1.size());
+        }
+        if (map2.size() != funds2.size()) {
+            log.warn("[{}] DUPLICATE plan_id DETECTED in API-2 response — {} raw fund record(s) but only "
+                    + "{} distinct plan_id(s); a duplicate was silently collapsed",
+                testCaseId, funds2.size(), map2.size());
+        }
+
+        log.info("[{}] FUND MATCHING END — finalMatchedCount={} (exact={}, alternate={}) "
+                + "finalMissingFunds={} finalExtraFunds={} finalMismatchCount={}",
+            testCaseId, finalMatchedCount, exactMatchedCount, alternateMatchedCount,
+            unmatched1, unmatched2, finalFundMismatchCount);
     }
 
     // -------------------------------------------------------------------------
@@ -304,6 +349,23 @@ public final class ResponseComparator {
             if (f.getPlanId() != null) map.put(f.getPlanId(), f);
         }
         return map;
+    }
+
+    /**
+     * 1-based original response position of each {@code plan_id}, exactly as returned by the
+     * API — never re-sorted. Used only for serial-fallback pairing/logging in
+     * {@link AlternateFundValidator}; the pairing logic itself relies on the natural
+     * insertion-order iteration of the {@code LinkedHashMap}/{@code LinkedHashSet} chain above,
+     * not on this map.
+     */
+    private static Map<String, Integer> serialIndex(List<FundEntry> funds) {
+        Map<String, Integer> serial = new LinkedHashMap<>();
+        int i = 1;
+        for (FundEntry f : funds) {
+            if (f.getPlanId() != null) serial.put(f.getPlanId(), i);
+            i++;
+        }
+        return serial;
     }
 
     private static Map<String, BreakdownEntry> breakdownsByCategoryId(List<BreakdownEntry> entries) {

@@ -212,10 +212,11 @@ public class ConfigReaderTest {
         Assert.assertEquals(headers.get("Content-Type"), "application/json");
         Assert.assertEquals(headers.get("Accept"),       "application/json");
 
-        // API-1 authenticates via cookie only — Authorization must NOT appear
-        // unless explicitly configured (it never is for API-1 per the supplied cURL)
-        Assert.assertNull(headers.get("Authorization"),
-            "API-1 must NOT have an Authorization header — cookie-only auth");
+        // API-1 uses a JWT obtained via login; present only when login credentials work
+        if (headers.containsKey("Authorization")) {
+            Assert.assertTrue(headers.get("Authorization").startsWith("Bearer "),
+                "API-1 Authorization must carry the JWT as a Bearer token");
+        }
         Assert.assertNull(headers.get("auth-token"),
             "API-1 must NOT have an auth-token header");
     }

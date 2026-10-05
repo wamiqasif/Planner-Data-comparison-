@@ -169,17 +169,35 @@ public final class ComparisonReportFormatter {
                    .filter(id -> id != null).collect(Collectors.toSet())
             : Set.of();
 
-        long matched = ids1.stream().filter(ids2::contains).count();
-        long missing = ids1.stream().filter(id -> !ids2.contains(id)).count();
-        long extra   = ids2.stream().filter(id -> !ids1.contains(id)).count();
+        // "Missing"/"Extra" must reflect the FINAL outcome after alternate-fund
+        // pairing, not raw plan_id set differences — a fund left unmatched by
+        // plan_id but successfully paired as an ALTERNATE_MATCH is neither
+        // missing nor extra. Read from ResponseComparator's own authoritative
+        // MISSING_FIELD/EXTRA_FIELD mismatches (already post-alternate-resolution)
+        // rather than recomputing an independent, divergent set difference here.
+        List<Mismatch> missingFundMismatches = result.getByType(MismatchType.MISSING_FIELD).stream()
+            .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
+            .collect(Collectors.toList());
+        List<Mismatch> extraFundMismatches = result.getByType(MismatchType.EXTRA_FIELD).stream()
+            .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
+            .collect(Collectors.toList());
+
+        long directMatched = ids1.stream().filter(ids2::contains).count();
+        long alternateMatched = result.getAlternateFundAudits().stream()
+            .filter(a -> a.getMatchType().isAcceptedMatch())
+            .count();
+        long matched = directMatched + alternateMatched;
+        long missing = missingFundMismatches.size();
+        long extra   = extraFundMismatches.size();
 
         String[][] fundTable = {
             {"Metric", "Count"},
-            {"API-1 Funds",    f1 >= 0 ? String.valueOf(f1) : "N/A"},
-            {"API-2 Funds",    f2 >= 0 ? String.valueOf(f2) : "N/A"},
-            {"Matched Funds",  String.valueOf(matched)},
-            {"Missing Funds",  String.valueOf(missing)},
-            {"Extra Funds",    String.valueOf(extra)},
+            {"API-1 Funds",           f1 >= 0 ? String.valueOf(f1) : "N/A"},
+            {"API-2 Funds",           f2 >= 0 ? String.valueOf(f2) : "N/A"},
+            {"Matched Funds (direct)", String.valueOf(directMatched)},
+            {"Matched Funds (alternate)", String.valueOf(alternateMatched)},
+            {"Missing Funds",        String.valueOf(missing)},
+            {"Extra Funds",          String.valueOf(extra)},
         };
         fundNode.log(Status.INFO, MarkupHelper.createTable(fundTable));
 
@@ -187,16 +205,12 @@ public final class ComparisonReportFormatter {
             fundNode.warning("Fund count mismatch: API-1=" + m.getApi1Value()
                              + " API-2=" + m.getApi2Value()));
 
-        result.getByType(MismatchType.MISSING_FIELD).stream()
-            .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
-            .forEach(m -> fundNode.fail(buildMismatchBlock(m)));
-
-        result.getByType(MismatchType.EXTRA_FIELD).stream()
-            .filter(m -> m.getFieldPath() != null && m.getFieldPath().contains("funds_data"))
-            .forEach(m -> fundNode.fail(buildMismatchBlock(m)));
+        missingFundMismatches.forEach(m -> fundNode.fail(buildMismatchBlock(m)));
+        extraFundMismatches.forEach(m -> fundNode.fail(buildMismatchBlock(m)));
 
         if (missing == 0 && extra == 0 && f1 == f2 && f1 > 0) {
-            fundNode.pass("All " + matched + " fund(s) matched by plan_id");
+            fundNode.pass("All " + matched + " fund(s) matched (" + directMatched + " direct, "
+                + alternateMatched + " alternate)");
         }
 
         // ── 3. Field Comparison node ─────────────────────────────────────────

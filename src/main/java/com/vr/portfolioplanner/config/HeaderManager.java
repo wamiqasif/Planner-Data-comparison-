@@ -60,7 +60,8 @@ public final class HeaderManager {
 
     /**
      * Returns an unmodifiable header map for API 1 POST calls.
-     * API-1 uses only cookie-based authentication; no Authorization header is sent.
+     * API-1 sends {@code Authorization: Bearer <JWT>} (from {@link Api1TokenProvider}) plus the
+     * optional session cookie. The Authorization header is omitted if the token cannot be obtained.
      */
     public Map<String, String> getApi1Headers() {
         Map<String, String> h = new LinkedHashMap<>();
@@ -70,6 +71,10 @@ public final class HeaderManager {
 
         // Cookie — from api1.cookie property or API1_COOKIE env var
         addCredentialHeader(h, "Cookie", "api1.cookie");
+
+        // JWT — obtained via login → access_token creation (cached, refreshed before expiry)
+        Api1TokenProvider.getInstance().getAccessToken().ifPresent(jwt ->
+            h.put("Authorization", config.get("api1.auth.scheme", "Bearer") + " " + jwt));
 
         log.debug("API1 headers assembled: {} key(s) — {}",
             h.size(), describeKeys(h));

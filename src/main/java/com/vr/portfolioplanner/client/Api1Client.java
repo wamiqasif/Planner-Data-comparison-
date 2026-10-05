@@ -1,5 +1,6 @@
 package com.vr.portfolioplanner.client;
 
+import com.vr.portfolioplanner.config.Api1TokenProvider;
 import com.vr.portfolioplanner.config.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -75,13 +77,18 @@ public final class Api1Client {
         long startMs = System.currentTimeMillis();
         LocalDateTime requestTimestamp = LocalDateTime.now();
         try {
-            Response response = RestAssured.given()
-                .config(raConfig)
-                .headers(headers)
-                .contentType("application/json")
-                .body(jsonBody)
-                .when()
-                .post(fullUrl);
+            Response response = send(jsonBody, headers);
+
+            if (response.getStatusCode() == 401) {
+                log.warn("API-1 returned 401 — refreshing JWT and retrying once");
+                var fresh = Api1TokenProvider.getInstance().forceRefreshToken();
+                if (fresh.isPresent()) {
+                    Map<String, String> retryHeaders = new LinkedHashMap<>(headers);
+                    retryHeaders.put("Authorization",
+                        ConfigReader.getInstance().get("api1.auth.scheme", "Bearer") + " " + fresh.get());
+                    response = send(jsonBody, retryHeaders);
+                }
+            }
 
             ApiResponse ar = ApiResponse.of("API-1", response, requestTimestamp);
             log.info("API-1 completed — {}", ar);
@@ -92,5 +99,15 @@ public final class Api1Client {
             log.warn("API-1 transport error after {}ms", elapsed, e);
             return ApiResponse.ofError("API-1", elapsed, e, requestTimestamp);
         }
+    }
+
+    private Response send(String jsonBody, Map<String, String> headers) {
+        return RestAssured.given()
+            .config(raConfig)
+            .headers(headers)
+            .contentType("application/json")
+            .body(jsonBody)
+            .when()
+            .post(fullUrl);
     }
 }
